@@ -1,0 +1,141 @@
+.activity-table-card{
+
+    background:white;
+
+    padding:30px;
+
+    border-radius:18px;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+    margin:40px auto;
+
+    max-width:1000px;
+
+}
+
+.activity-table-card h2{
+
+    color:#1B5E20;
+
+    margin-bottom:20px;
+
+}
+
+.activity-table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+}
+
+.activity-table th{
+
+    background:#2E7D32;
+
+    color:white;
+
+    padding:14px;
+
+    text-align:center;
+
+}
+
+.activity-table td{
+
+    padding:15px;
+
+    text-align:center;
+
+    border-bottom:1px solid #eee;
+
+}
+
+.activity-table tr:hover{
+
+    background:#F5FBF5;
+
+}
+
+.badge{
+
+    padding:6px 12px;
+
+    border-radius:20px;
+
+    color:white;
+
+    font-size:13px;
+
+}
+
+.badge.transport{
+
+    background:#2196F3;
+
+}
+
+.badge.electricity{
+
+    background:#FB8C00;
+
+}
+
+.badge.food{
+
+    background:#43A047;
+
+}
+
+.badge.shopping{
+
+    background:#8E24AA;
+
+}
+
+.edit-btn{
+
+    background:#FFC107;
+
+    color:white;
+
+    border:none;
+
+    padding:8px 10px;
+
+    border-radius:8px;
+
+    cursor:pointer;
+
+    margin-right:8px;
+
+}
+
+.delete-btn{
+
+    background:#E53935;
+
+    color:white;
+
+    border:none;
+
+    padding:8px 10px;
+
+    border-radius:8px;
+
+    cursor:pointer;
+
+}
+
+.empty-state{
+
+    text-align:center;
+
+    color:#777;
+
+    padding:30px;
+
+    font-size:18px;
+
+}

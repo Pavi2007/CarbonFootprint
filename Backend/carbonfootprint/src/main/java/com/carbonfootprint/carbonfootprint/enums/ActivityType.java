@@ -6,7 +6,10 @@ public enum ActivityType {
     BUS,
     TRAIN,
     FLIGHT,
+    TRANSPORT,
     ELECTRICITY,
-    FOOD
+    FOOD,
+    SHOPPING
+
 
 }

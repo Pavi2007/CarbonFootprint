@@ -1,0 +1,399 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    margin:0;
+}
+
+.login-page{
+
+    width:100%;
+    min-height:100vh;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    background-image:url("../assets/carbonbg.png");
+
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+
+}
+
+.login-card{
+
+    width:100%;
+    max-width:480px;
+
+    background:#fff;
+
+    border-radius:24px;
+
+    padding:45px 35px;
+
+    box-shadow:0 15px 35px rgba(0,0,0,0.12);
+
+    text-align:center;
+
+}
+
+.login-container{
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+}
+
+.left-panel{
+
+    flex: 0 0 65%;
+
+    background-image: url("../assets/carbonbg.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    position: relative;
+
+}
+
+.overlay{
+
+    position:absolute;
+
+    inset:0;
+
+    background:rgba(0,70,30,.45);
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    padding:80px;
+
+    color:white;
+
+}
+
+.right-panel{
+
+    flex: 0 0 35%;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    background:#ffffff;
+
+    padding:40px;
+
+}
+@media(max-width:900px){
+
+.login-container{
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+}
+
+.left-panel{
+
+    height:250px;
+
+}
+
+.right-panel{
+
+    width:100%;
+
+}
+
+}
+
+.logo{
+
+    width:90px;
+    height:90px;
+
+    border-radius:50%;
+
+    background:#16a34a;
+
+    margin:auto;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    color:white;
+    font-size:45px;
+
+    margin-bottom:20px;
+
+}
+
+.login-card h1{
+
+    font-size:3rem;
+
+    color:#166534;
+
+    margin-bottom:10px;
+
+}
+
+.subtitle{
+
+    color:#666;
+
+    font-size:1.1rem;
+
+    margin-bottom:35px;
+
+}
+
+.form-group{
+
+    text-align:left;
+
+    margin-bottom:22px;
+
+}
+
+.form-group label{
+
+    font-size:18px;
+
+    font-weight:600;
+
+    margin-bottom:8px;
+
+    display:block;
+
+}
+
+.form-group input{
+
+    width:100%;
+
+    padding:15px;
+
+    font-size:16px;
+
+    border-radius:12px;
+
+    border:1px solid #cbd5e1;
+
+    outline:none;
+
+    transition:.3s;
+
+}
+
+.form-group input:focus{
+
+    border-color:#16a34a;
+
+    box-shadow:0 0 8px rgba(22,163,74,.25);
+
+}
+
+.login-btn{
+
+    width:100%;
+
+    padding:15px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:#16a34a;
+
+    color:white;
+
+    font-size:18px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.login-btn:hover{
+
+    background:#15803d;
+
+    transform:translateY(-2px);
+
+}
+
+.register-text{
+
+    margin-top:25px;
+
+    font-size:16px;
+
+}
+
+.register-text a{
+
+    color:#16a34a;
+
+    text-decoration:none;
+
+    font-weight:600;
+
+}
+
+.register-text a:hover{
+
+    text-decoration:underline;
+
+}
+.overlay{
+
+    position:absolute;
+    inset:0;
+
+    background: rgba(20,70,35,0.35);
+
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+
+    padding-left:70px;
+    padding-right:70px;
+
+}
+.overlay h1{
+
+    font-size:4rem;
+
+    color:#eaffea;
+
+    font-weight:700;
+
+    line-height:1.2;
+
+    margin-bottom:20px;
+
+}
+
+/* Tablet */
+
+@media(max-width:768px){
+
+.login-card{
+
+    max-width:420px;
+
+    padding:35px 25px;
+
+}
+
+.login-card h1{
+
+    font-size:2.4rem;
+
+}
+
+.logo{
+
+    width:80px;
+    height:80px;
+    font-size:40px;
+
+}
+
+}
+
+/* Mobile */
+
+@media(max-width:480px){
+
+.login-page{
+
+    width:100vw;
+    min-height:100vh;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    background-image:url("../assets/carbonbg.png");
+
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+
+}
+
+.login-card{
+
+    width:100%;
+    max-width:480px;
+
+    padding:40px;
+
+    border-radius:25px;
+
+    background:rgba(255,255,255,0.88);
+
+    backdrop-filter:blur(10px);
+
+    -webkit-backdrop-filter:blur(10px);
+
+    box-shadow:0 15px 40px rgba(0,0,0,.18);
+
+}
+
+.login-card h1{
+
+    font-size:2rem;
+
+}
+
+.subtitle{
+
+    font-size:15px;
+
+}
+
+.form-group label{
+
+    font-size:16px;
+
+}
+
+.form-group input{
+
+    padding:13px;
+
+}
+
+.login-btn{
+
+    padding:14px;
+
+}
+
+.logo{
+
+    width:70px;
+    height:70px;
+    font-size:35px;
+
+}
+
+}

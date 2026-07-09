@@ -1,0 +1,303 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+.register-container{
+
+    display:flex;
+
+    width:100%;
+
+    min-height:100vh;
+
+}
+
+.register-left{
+
+    flex:65%;
+
+    background-image:url("../assets/carbonbg.png");
+
+    background-size:cover;
+
+    background-position:center;
+
+    position:relative;
+
+}
+
+.overlay{
+
+    position:absolute;
+
+    inset:0;
+
+    background:rgba(20,70,35,.12);
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    padding:70px;
+
+}
+
+.overlay h1{
+
+    font-size:60px;
+
+    color:#F2FFF2;
+
+    margin-bottom:20px;
+
+}
+
+.overlay p{
+
+    font-size:22px;
+
+    color:#ECFFEC;
+
+    width:70%;
+
+    line-height:1.7;
+
+}
+
+.register-right{
+
+    flex:35%;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    background:#F8FFF8;
+
+    padding:40px;
+
+}
+
+.register-card{
+    width:100%;
+    max-width:500px;
+
+    background:#fff;
+    border-radius:22px;
+    padding:40px;
+    box-shadow:0 15px 35px rgba(0,0,0,.12);
+}
+.input-row{
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:16px;
+
+    margin-bottom:18px;
+
+}
+.input-row input,
+.input-row select{
+
+    width:100%;
+
+    height:52px;
+
+    padding:0 16px;
+
+    border:1px solid #d1d5db;
+
+    border-radius:10px;
+
+    font-size:15px;
+
+    outline:none;
+
+    background:white;
+
+}
+.input-row select{
+
+    appearance:none;
+
+    cursor:pointer;
+
+}
+.register-btn{
+
+    width:100%;
+
+    height:54px;
+
+    margin-top:10px;
+
+    border:none;
+
+    border-radius:10px;
+
+    background:#16A34A;
+
+    color:white;
+
+    font-size:18px;
+
+    font-weight:600;
+
+}
+.register-card h2{
+
+    margin-top:15px;
+
+    margin-bottom:10px;
+
+}
+
+.subtitle{
+
+    margin-bottom:30px;
+
+}
+
+.logo{
+
+    width:80px;
+
+    height:80px;
+
+    margin:auto;
+
+    border-radius:50%;
+
+    background:#16A34A;
+
+    color:white;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:40px;
+
+    margin-bottom:20px;
+
+}
+
+
+
+.input-row{
+
+    display:flex;
+
+    gap:10px;
+
+    margin-bottom:15px;
+
+}
+
+.input-row input,
+.input-row select{
+
+    flex:1;
+
+    padding:12px;
+
+    border:1px solid #ddd;
+
+    border-radius:10px;
+
+    outline:none;
+
+}
+
+.input-row input:focus,
+.input-row select:focus{
+
+    border-color:#16A34A;
+
+}
+
+.register-btn{
+
+    width:100%;
+
+    padding:14px;
+
+    border:none;
+
+    border-radius:10px;
+
+    background:#16A34A;
+
+    color:white;
+
+    font-size:17px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    margin-top:10px;
+
+}
+
+.register-btn:hover{
+
+    background:#15803D;
+
+}
+
+.login-link{
+
+    margin-top:20px;
+
+}
+
+.login-link a{
+
+    text-decoration:none;
+
+    color:#16A34A;
+
+    font-weight:600;
+
+    margin-left:5px;
+
+}
+
+@media(max-width:900px){
+
+.register-container{
+
+    flex-direction:column;
+
+}
+
+.register-left{
+
+    height:250px;
+
+}
+
+.register-right{
+
+    width:100%;
+
+}
+
+.input-row{
+
+    flex-direction:column;
+
+}
+
+}

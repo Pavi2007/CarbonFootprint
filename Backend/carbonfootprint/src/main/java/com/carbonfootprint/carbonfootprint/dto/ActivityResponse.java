@@ -16,6 +16,8 @@ public class ActivityResponse {
 
     private ActivityType activityType;
 
+    private String category;
+
     private Double value;
 
     private String unit;

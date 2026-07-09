@@ -9,5 +9,5 @@ import java.util.List;
 public interface ActivityRepository extends JpaRepository<Activity, Long> {
 
     List<Activity> findByUser(User user);
-
+    List<Activity> findByUserOrderByActivityDateDesc(User user);
 }

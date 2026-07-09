@@ -30,6 +30,8 @@ public class Activity {
 
     private LocalDate activityDate;
 
+    private String category;
+
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;

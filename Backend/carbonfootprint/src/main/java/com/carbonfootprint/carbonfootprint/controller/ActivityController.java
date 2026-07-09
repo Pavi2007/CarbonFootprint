@@ -5,8 +5,8 @@ import com.carbonfootprint.carbonfootprint.dto.ActivityResponse;
 import com.carbonfootprint.carbonfootprint.service.ActivityService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
+
 
 @RestController
 @RequestMapping("/api/activity")
@@ -48,5 +48,4 @@ public class ActivityController {
         return activityService.deleteActivity(id);
 
     }
-
 }

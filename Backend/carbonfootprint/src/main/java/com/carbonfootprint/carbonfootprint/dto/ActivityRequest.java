@@ -4,6 +4,8 @@ import com.carbonfootprint.carbonfootprint.enums.ActivityType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import java.time.LocalDate;
+
 
 @Data
 @NoArgsConstructor
@@ -16,4 +18,6 @@ public class ActivityRequest {
 
     private String unit;
 
+    private String category;
+    private LocalDate activityDate;
 }

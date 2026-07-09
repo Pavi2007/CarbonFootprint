@@ -1,0 +1,123 @@
+.chart-card{
+
+    background:white;
+
+    border-radius:18px;
+
+    padding:20px;
+
+    box-shadow:0 5px 15px rgba(0,0,0,.08);
+
+}
+
+.chart-card h2{
+
+    text-align:center;
+
+    color:#263238;
+
+    margin-bottom:20px;
+
+}
+.breakdown-card{
+
+background:white;
+
+padding:20px;
+
+border-radius:18px;
+
+box-shadow:0 5px 15px rgba(0,0,0,.08);
+
+}
+
+.progress-item{
+
+margin:20px 0;
+
+}
+
+.progress-title{
+
+display:flex;
+
+justify-content:space-between;
+
+margin-bottom:8px;
+
+font-weight:400;
+
+}
+
+.progress{
+
+height:10px;
+
+background:#ECEFF1;
+
+border-radius:20px;
+
+overflow:hidden;
+
+}
+
+.progress-fill{
+
+height:100%;
+
+border-radius:20px;
+
+}
+.analytics-page{
+    margin-left:240px;      /* Same as sidebar width */
+    margin-top:5px;        /* Same as navbar height */
+    padding:25px;
+    min-height:100vh;
+    background:#F5F7FA;
+}
+.analytics-summary{
+
+display:grid;
+
+grid-template-columns:repeat(4,1fr);
+
+gap:20px;
+
+margin:25px 0;
+
+}
+.analytics-charts{
+
+display:grid;
+
+grid-template-columns:35% 65%;
+
+gap:20px;
+
+margin-top:20px;
+
+}
+.analytics-bottom{
+
+display:grid;
+
+grid-template-columns:60% 40%;
+
+gap:20px;
+
+margin-top:20px;
+
+}
+.chart-card,
+.bar-card,
+.breakdown-card{
+
+background:white;
+
+padding:20px;
+
+border-radius:16px;
+
+box-shadow:0 5px 20px rgba(0,0,0,.08);
+
+}

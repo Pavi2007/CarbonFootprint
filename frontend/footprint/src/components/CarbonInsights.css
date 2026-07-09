@@ -1,0 +1,87 @@
+.insights-card{
+
+background:white;
+
+padding:25px;
+
+border-radius:18px;
+
+box-shadow:0 5px 15px rgba(0,0,0,.08);
+
+margin-top:25px;
+
+}
+
+.insights-card h2{
+
+color:#1B5E20;
+
+margin-bottom:20px;
+
+}
+
+.insight{
+
+display:flex;
+
+align-items:center;
+
+gap:18px;
+
+padding:15px 0;
+
+border-bottom:1px solid #eee;
+
+}
+
+.insight:last-child{
+
+border-bottom:none;
+
+}
+
+.insight-icon{
+
+font-size:26px;
+
+color:#2E7D32;
+
+}
+
+.insight h4{
+
+margin:0;
+
+}
+
+.insight p{
+
+margin:4px 0 0;
+
+color:#666;
+
+font-size:14px;
+
+}
+
+.tip{
+
+margin-top:20px;
+
+padding:15px;
+
+background:#E8F5E9;
+
+border-radius:12px;
+
+display:flex;
+
+gap:12px;
+
+align-items:center;
+
+color:#1B5E20;
+
+font-weight:600;
+
+}

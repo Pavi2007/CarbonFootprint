@@ -1,0 +1,35 @@
+.goal-card{
+
+background:white;
+
+padding:25px;
+
+border-radius:18px;
+
+box-shadow:0 5px 15px rgba(0,0,0,.08);
+
+margin-top:30px;
+
+}
+
+.goal{
+
+margin:20px 0;
+
+}
+
+.goal p{
+
+font-weight:600;
+
+margin-bottom:8px;
+
+}
+
+.goal progress{
+
+width:100%;
+
+height:18px;
+
+}

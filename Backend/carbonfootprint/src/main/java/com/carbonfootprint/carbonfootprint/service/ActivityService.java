@@ -8,12 +8,14 @@ import com.carbonfootprint.carbonfootprint.repository.ActivityRepository;
 import com.carbonfootprint.carbonfootprint.repository.UserRepository;
 import com.carbonfootprint.carbonfootprint.util.EmissionCalculator;
 import lombok.RequiredArgsConstructor;
+import org.springframework.jmx.export.metadata.ManagedMetric;
 import org.springframework.stereotype.Service;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import java.time.LocalDate;
 import java.util.List;
 import org.springframework.security.access.AccessDeniedException;
+
 @Service
 @RequiredArgsConstructor
 public class ActivityService {
@@ -34,6 +36,7 @@ public class ActivityService {
     }
     // 👇 Add the method here
     public ActivityResponse addActivity(ActivityRequest request) {
+
         Authentication authentication =
                 SecurityContextHolder.getContext().getAuthentication();
 
@@ -45,10 +48,12 @@ public class ActivityService {
         activity.setActivityType(request.getActivityType());
         activity.setValue(request.getValue());
         activity.setUnit(request.getUnit());
-        activity.setActivityDate(LocalDate.now());
+        activity.setActivityDate(request.getActivityDate());
+        activity.setCategory(request.getCategory());
 
         double emission = emissionCalculator.calculateEmission(
                 request.getActivityType(),
+                request.getCategory(),
                 request.getValue()
         );
 
@@ -58,9 +63,11 @@ public class ActivityService {
 
         Activity savedActivity = activityRepository.save(activity);
 
+        ManagedMetric response;
         return new ActivityResponse(
                 savedActivity.getId(),
                 savedActivity.getActivityType(),
+                savedActivity.getCategory(),
                 savedActivity.getValue(),
                 savedActivity.getUnit(),
                 savedActivity.getEmission(),
@@ -78,11 +85,11 @@ public class ActivityService {
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
         List<Activity> activities = activityRepository.findByUser(user);
-
         return activities.stream()
                 .map(activity -> new ActivityResponse(
                         activity.getId(),
                         activity.getActivityType(),
+                        activity.getCategory(),
                         activity.getValue(),
                         activity.getUnit(),
                         activity.getEmission(),
@@ -103,11 +110,11 @@ public class ActivityService {
             System.out.println("Access Denied!");
 
             throw new AccessDeniedException("Access Denied");
-        }7
-
+        }
         return new ActivityResponse(
                 activity.getId(),
                 activity.getActivityType(),
+                activity.getCategory(),
                 activity.getValue(),
                 activity.getUnit(),
                 activity.getEmission(),
@@ -128,9 +135,11 @@ public class ActivityService {
         activity.setActivityType(request.getActivityType());
         activity.setValue(request.getValue());
         activity.setUnit(request.getUnit());
+        activity.setCategory(request.getCategory());
 
         double emission = emissionCalculator.calculateEmission(
                 request.getActivityType(),
+                request.getCategory(),
                 request.getValue()
         );
 
@@ -141,6 +150,7 @@ public class ActivityService {
         return new ActivityResponse(
                 updatedActivity.getId(),
                 updatedActivity.getActivityType(),
+                updatedActivity.getCategory(),
                 updatedActivity.getValue(),
                 updatedActivity.getUnit(),
                 updatedActivity.getEmission(),

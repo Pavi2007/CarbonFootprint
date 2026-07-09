@@ -1,0 +1,225 @@
+.activity-page{
+
+    margin-left:260px;
+    padding:30px;
+    background:#f5f7f9;
+    min-height:100vh;
+
+}
+
+.activity-page h1{
+
+    color:#1B5E20;
+    margin-bottom:25px;
+    font-size:34px;
+
+}
+
+.activity-card{
+
+    background:#fff;
+    border-radius:18px;
+    padding:30px;
+    box-shadow:0 5px 15px rgba(0,0,0,.08);
+    margin-bottom:30px;
+
+}
+
+.activity-card h2{
+
+    color:#1B5E20;
+    margin-bottom:25px;
+
+}
+
+.form-grid{
+
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:20px;
+
+}
+
+.form-group{
+
+    display:flex;
+    flex-direction:column;
+
+}
+
+.form-group label{
+
+    font-weight:600;
+    margin-bottom:8px;
+    color:#333;
+
+}
+
+.form-group input,
+.form-group select{
+
+    padding:12px 15px;
+    border:1px solid #dcdcdc;
+    border-radius:10px;
+    font-size:15px;
+    outline:none;
+    transition:.3s;
+
+}
+
+.form-group input:focus,
+.form-group select:focus{
+
+    border-color:#2E7D32;
+
+}
+
+.save-btn{
+
+    margin-top:30px;
+    background:#2E7D32;
+    color:white;
+    border:none;
+    padding:14px 30px;
+    border-radius:10px;
+    cursor:pointer;
+    font-size:16px;
+    font-weight:600;
+    transition:.3s;
+
+}
+
+.save-btn:hover{
+
+    background:#1B5E20;
+
+}
+
+.activity-table{
+
+    background:white;
+    border-radius:18px;
+    padding:25px;
+    box-shadow:0 5px 15px rgba(0,0,0,.08);
+
+}
+
+.activity-table h2{
+
+    color:#1B5E20;
+    margin-bottom:20px;
+
+}
+
+table{
+
+    width:100%;
+    border-collapse:collapse;
+
+}
+
+thead{
+
+    background:#2E7D32;
+    color:white;
+
+}
+
+th{
+
+    padding:15px;
+    text-align:center;
+
+}
+
+td{
+
+    padding:15px;
+    text-align:center;
+    border-bottom:1px solid #eee;
+
+}
+
+tbody tr:hover{
+
+    background:#F1F8E9;
+
+}
+
+tbody tr:nth-child(even){
+
+    background:#fafafa;
+
+}
+
+@media(max-width:900px){
+
+.form-grid{
+
+grid-template-columns:1fr;
+
+}
+
+.activity-page{
+
+margin-left:0;
+padding:20px;
+
+}
+
+table{
+
+display:block;
+overflow-x:auto;
+
+}
+
+}
+/* Action Buttons */
+
+.action-buttons{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:10px;
+}
+
+.edit-btn,
+.delete-btn{
+
+    border:none;
+    padding:4px 4px;
+    border-radius:4px;
+    color:white;
+    cursor:pointer;
+    font-size:12px;
+    font-weight:300;
+    transition:0.3s ease;
+
+}
+
+.edit-btn{
+
+    background:#1976D2;
+
+}
+
+.edit-btn:hover{
+
+    background:#125ea9;
+    transform:translateY(-2px);
+
+}
+
+.delete-btn{
+
+    background:#E53935;
+
+}
+
+.delete-btn:hover{
+
+    background:#c62828;
+    transform:translateY(-2px);
+
+}
