@@ -1,171 +1,324 @@
-.recommend-page{
+/* ==============================
+   Recommendation Page
+============================== */
 
-margin-left:230px;
+.recommendation-page{
+    margin-left:240px;
+    margin-top:10px;
+    padding:30px;
+    min-height:100vh;
+    background:#eff1f4;
+}
 
-margin-top:10px;
+/* ==============================
+   Header
+============================== */
 
-padding:30px;
+.header-card{
+    text-align:center;
+    margin-bottom:30px;
+}
 
-background:#F5F7FA;
+.header-card h2{
+    font-size:36px;
+    color:#163C2D;
+    margin-bottom:8px;
+    font-weight:700;
+}
 
-min-height:100vh;
+.header-card p{
+    color:#6B7280;
+    font-size:16px;
+}
+
+/* ==============================
+   Hero Card
+============================== */
+
+.focus-card{
+
+    background:linear-gradient(135deg,#2E7D32,#43A047);
+    color:white;
+
+    border-radius:22px;
+
+    padding:35px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    box-shadow:0 15px 35px rgba(46,125,50,.25);
+
+    margin-bottom:28px;
 
 }
 
-.recommend-header h1{
+.focus-left{
 
-font-size:34px;
-
-color:#263238;
+    width:70%;
 
 }
 
-.recommend-header p{
+.focus-title{
 
-margin-top:10px;
+    text-transform:uppercase;
 
-color:#607D8B;
+    font-size:13px;
 
+    letter-spacing:1px;
+
+    opacity:.85;
+
+    margin-bottom:10px;
+
+}
+.focus-card{
+    margin-bottom:25px;
+}
+
+.tips-card{
+    margin-bottom:25px;
 }
 
 .saving-card{
+    margin-bottom:25px;
+}
 
-margin:30px 0;
+.eco-tip{
+    margin-bottom:25px;
+}
+.focus-card h3{
 
-background:linear-gradient(135deg,#2E7D32,#43A047);
+    font-size:34px;
 
-color:white;
-
-padding:25px;
-
-border-radius:18px;
-
-display:flex;
-
-align-items:center;
-
-gap:20px;
-
-box-shadow:0 10px 25px rgba(0,0,0,.15);
+    margin-bottom:12px;
 
 }
 
-.saving-card svg{
+.focus-card p{
 
-font-size:45px;
+    line-height:1.8;
+
+    opacity:.95;
+
+    font-size:20px;
+
+}
+
+.emission{
+
+    margin-top:25px;
+
+    display:inline-block;
+
+    padding:12px 22px;
+
+    border-radius:50px;
+
+    background:rgba(255,255,255,.18);
+
+    backdrop-filter:blur(10px);
+
+    font-size:22px;
+
+    font-weight:bold;
+
+}
+
+/* ==============================
+   Grid
+============================== */
+
+.recommend-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:22px;
+
+    margin-bottom:25px;
+
+}
+
+/* ==============================
+   Cards
+============================== */
+
+.tips-card,
+.saving-card,
+.eco-tip{
+
+    background:white;
+
+    border-radius:20px;
+
+    padding:28px;
+
+    box-shadow:0 8px 25px rgba(0,0,0,.08);
+
+    transition:.35s;
+
+}
+
+.tips-card:hover,
+.saving-card:hover,
+.eco-tip:hover{
+
+    transform:translateY(-5px);
+
+    box-shadow:0 15px 35px rgba(0,0,0,.12);
+
+}
+
+.tips-card h3,
+.saving-card h3,
+.eco-tip h3{
+
+    margin-bottom:22px;
+
+    color:#163C2D;
+
+}
+
+/* ==============================
+   Tips
+============================== */
+
+.tip{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+    margin-bottom:18px;
+
+    font-size:16px;
+
+    color:#444;
+
+}
+
+.dot{
+
+    width:12px;
+
+    height:12px;
+
+    border-radius:50%;
+
+    background:#11582e;
+
+}
+
+/* ==============================
+   Saving Card
+============================== */
+
+.saving-card{
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+}
+
+.saving-card span{
+
+    color:#6B7280;
+
+    font-size:15px;
+
+}
+
+.saving-card h3{
+
+    margin-top:10px;
+
+    font-size:30px;
+
+    color:#1c4e34;
+
+}
+
+.impact{
+
+    margin-top:25px;
+
+    display:inline-block;
+
+    background:#E8F5E9;
+
+    color:#216538;
+
+    padding:8px 18px;
+
+    border-radius:30px;
+
+    font-weight:600;
+
+}
+
+/* ==============================
+   Eco Tip
+============================== */
+
+.eco-tip{
+
+    border-left:6px solid #43A047;
+
+}
+
+.eco-tip p{
+
+    line-height:1.8;
+
+    color:#555;
+
+}
+
+/* ==============================
+   Mobile
+============================== */
+
+@media(max-width:900px){
+
+.recommendation-page{
+
+margin-left:0;
+
+padding:20px;
 
 }
 
 .recommend-grid{
 
-display:grid;
+grid-template-columns:1fr;
+ gap: 25px;  
 
-grid-template-columns:repeat(2,1fr);
+}
+
+.focus-card{
+
+flex-direction:column;
+
+align-items:flex-start;
 
 gap:25px;
 
 }
 
-.recommend-card{
+.focus-left{
 
-background:white;
-
-padding:25px;
-
-border-radius:18px;
-
-box-shadow:0 5px 15px rgba(0,0,0,.08);
-
-transition:.3s;
+width:100%;
 
 }
-
-.recommend-card:hover{
-
-transform:translateY(-6px);
-
-}
-
-.recommend-icon{
-
-width:60px;
-
-height:60px;
-
-border-radius:50%;
-
-background:#E8F5E9;
-
-display:flex;
-
-align-items:center;
-
-justify-content:center;
-
-font-size:26px;
-
-color:#2E7D32;
-
-margin-bottom:20px;
-
-}
-
-.recommend-card h3{
-
-margin-bottom:12px;
-
-color:#263238;
-
-}
-
-.recommend-card p{
-
-color:#607D8B;
-
-line-height:1.6;
-
-}
-
-.recommend-card span{
-
-display:inline-block;
-
-margin-top:15px;
-
-font-weight:bold;
-
-color:#2E7D32;
-
-}
-
-.daily-tip{
-
-margin-top:10px;
-
-background:white;
-
-padding:25px;
-
-border-radius:18px;
-
-box-shadow:0 5px 15px rgba(0,0,0,.08);
-
-}
-
-.daily-tip h2{
-
-margin-bottom:15px;
-
-color:#1B5E20;
-
-}
-
-.daily-tip p{
-
-color:#555;
-
-font-size:16px;
-
-line-height:1.8;
 
 }

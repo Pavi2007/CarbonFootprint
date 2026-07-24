@@ -1,134 +1,156 @@
 import "./Recommendations.css";
-
+import { useEffect, useState } from "react";
+import { getTopContributors } from "../services/authService";
 import Sidebar from "../components/Sidebar";
 import Navbar from "../components/Navbar";
 
-import {
-  FaCar,
-  FaBolt,
-  FaShoppingBag,
-  FaUtensils,
-  FaLeaf
-} from "react-icons/fa";
+const recommendations = {
 
-const tips = [
+    Transport: {
+        title: "Transportation",
+        tips: [
+            "Use public transport twice this week",
+            "Walk for short trips",
+            "Carpool whenever possible"
+        ],
+        saving: "8.5 kg CO₂/month"
+    },
 
-  {
-    icon: <FaCar />,
-    title: "Transport",
-    description:
-      "Use public transport or carpool twice a week to reduce carbon emissions.",
-    saving: "Save up to 18 kg CO₂ / month",
-  },
+    Electricity: {
+        title: "Electricity",
+        tips: [
+            "Turn off unused appliances",
+            "Use LED bulbs",
+            "Unplug idle chargers"
+        ],
+        saving: "5.2 kg CO₂/month"
+    },
 
-  {
-    icon: <FaBolt />,
-    title: "Electricity",
-    description:
-      "Switch off unused appliances and replace bulbs with LED lights.",
-    saving: "Save up to 12 kg CO₂ / month",
-  },
+    Food: {
+        title: "Food",
+        tips: [
+            "Reduce food waste",
+            "Eat one vegetarian meal",
+            "Buy local produce"
+        ],
+        saving: "4.3 kg CO₂/month"
+    },
 
-  {
-    icon: <FaUtensils />,
-    title: "Food",
-    description:
-      "Reduce food waste and include more plant-based meals.",
-    saving: "Save up to 8 kg CO₂ / month",
-  },
+    Shopping: {
+        title: "Shopping",
+        tips: [
+            "Buy reusable products",
+            "Avoid unnecessary purchases",
+            "Choose eco-friendly packaging"
+        ],
+        saving: "3.1 kg CO₂/month"
+    },
 
-  {
-    icon: <FaShoppingBag />,
-    title: "Shopping",
-    description:
-      "Buy reusable products and avoid unnecessary purchases.",
-    saving: "Save up to 10 kg CO₂ / month",
-  },
+    Others: {
+        title: "Others",
+        tips: [
+            "Recycle waste",
+            "Plant a tree",
+            "Reduce paper usage"
+        ],
+        saving: "2.0 kg CO₂/month"
+    }
 
-];
+};
 
-const Recommendations = () => {
+export default function Recommendation() {
 
-  return (
+    const [data, setData] = useState(null);
 
-    <>
+    useEffect(() => {
+        loadRecommendation();
+    }, []);
 
-      <Sidebar />
+   async function loadRecommendation() {
+    const res = await getTopContributors("monthly");
 
-      <Navbar />
+    console.log(JSON.stringify(res.data, null, 2));
 
-      <div className="recommend-page">
+    if (res.data.length > 0) {
+        setData(res.data[0]);
+    }
+}
 
-        <div className="recommend-header">
+    if (!data) return null;
 
-          <h1>Smart Recommendations 🌱</h1>
+    const rec = recommendations[data.category];
 
-          <p>
-            Personalized suggestions to reduce your carbon footprint.
-          </p>
+    return (
+<>
+    <Sidebar />
+    <Navbar />
+
+    <div className="recommendation-page">
+
+        <div className="header-card">
+            <h2>Personalized Recommendations</h2>
+            <p>Based on your recent activities</p>
+        </div>
+
+        <div className="focus-card">
+
+            <div className="focus-title">
+                Primary Focus
+            </div>
+
+            <h3>{rec.title}</h3>
+
+            <p>
+                This category contributes the most to your carbon footprint.
+            </p>
+
+            <div className="emission">
+                {data.emission.toFixed(1)} kg CO₂
+            </div>
+
+        </div>
+
+        <div className="tips-card">
+
+            <h3>Suggested Actions</h3>
+
+            {rec.tips.map((tip, index) => (
+
+                <div className="tip" key={index}>
+                    <span className="dot"></span>
+                    {tip}
+                </div>
+
+            ))}
 
         </div>
 
         <div className="saving-card">
 
-          <FaLeaf className="leaf-icon" />
-
-          <div>
-
-            <h2>Total Potential Reduction</h2>
-
-            <h1>48 kg CO₂ / Month</h1>
-
-          </div>
-
-        </div>
-
-        <div className="recommend-grid">
-
-          {tips.map((item, index) => (
-
-            <div className="recommend-card" key={index}>
-
-              <div className="recommend-icon">
-
-                {item.icon}
-
-              </div>
-
-              <h3>{item.title}</h3>
-
-              <p>{item.description}</p>
-
-              <span>{item.saving}</span>
-
+            <div>
+                <span>Potential Saving</span>
+                <h3>{rec.saving}</h3>
             </div>
 
-          ))}
+            <div>
+                <span>Impact</span>
+                <h3>High</h3>
+            </div>
 
         </div>
 
-        <div className="daily-tip">
+        <div className="eco-tip">
 
-          <h2>🌍 Tip of the Day</h2>
+            <h4>Daily Eco Tip</h4>
 
-          <p>
-
-            Walking just 2 km instead of driving can reduce nearly
-
-            <strong> 0.5 kg of CO₂ </strong>
-
-            every day.
-
-          </p>
+            <p>
+                Small sustainable choices every day create lasting environmental change.
+            </p>
 
         </div>
 
-      </div>
+    </div>
 
-    </>
-
-  );
-
-};
-
-export default Recommendations;
+</>
+);
+}

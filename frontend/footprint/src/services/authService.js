@@ -68,7 +68,22 @@ export const getMonthlyTrend = () => {
 };
 
 export const getYearlyTrend = () => {
+
     return API.get("/dashboard/yearly-trend");
+
+};
+export const getBreakdown = (period) => {
+
+    return API.get("/dashboard/breakdown", {
+
+        params: {
+
+            period
+
+        }
+
+    });
+
 };
 // Get All Activities
 export const getMyActivities = () => {
@@ -88,3 +103,91 @@ export const updateActivity = (id, activityData) => {
 // Delete Activity
 export const deleteActivity = (id) =>
     API.delete(`/activity/delete/${id}`);
+
+export const getAnalyticsSummary = (period) => {
+    return API.get("/analytics/summary", {
+        params: {
+            period
+        }
+    });
+};
+export const getMonthlyComparison = (period) => {
+
+    return API.get("/analytics/monthly-comparison", {
+
+        params: {
+            period
+        }
+
+    });
+
+};
+export const getTopContributors = (period) => {
+
+    return API.get("/analytics/top-contributors", {
+
+        params: {
+            period
+        }
+
+    });
+
+};
+
+export const getInsights = (period) => {
+
+    return API.get("/analytics/insights", {
+
+        params: {
+            period
+        }
+
+    });
+
+};
+export const getTrendSummary = (period) => {
+
+    return API.get("/analytics/trend-summary", {
+
+        params: {
+            period
+        }
+
+    });
+
+};
+export const getTimeline = (period) => {
+
+    return API.get("/analytics/timeline", {
+
+        params: {
+            period
+        }
+
+    });
+
+};
+export const getHistory = (params) => {
+
+    return API.get("/activity/history",{
+
+        params
+
+    });
+
+};
+// ==========================
+// PROFILE APIs
+// ==========================
+
+export const getProfile = () => {
+
+    return API.get("/user/profile");
+
+};
+
+export const updateProfile = (profile) => {
+
+    return API.put("/user/profile", profile);
+
+};

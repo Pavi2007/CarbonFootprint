@@ -1,6 +1,6 @@
 body{
 
-background:#F4F7F9;
+background:#f9e2e8;
 
 }
 
@@ -13,10 +13,25 @@ padding:30px;
 min-height:100vh;
 
 }
+.dashboard-layout{
+    display:flex;
+    min-height:100vh;
+    background:#f0f1f2;
+}
+
+.dashboard-main{
+    flex:1;
+    margin-left:10px;      /* Same width as your sidebar */
+    min-height:100vh;
+    padding:0px;
+    box-sizing:border-box;
+    overflow-x:hidden;
+}
 
 .welcome{
 
 margin-bottom:30px;
+color:#1B5E20
 
 }
 
@@ -46,9 +61,11 @@ display:grid;
 
 grid-template-columns:repeat(4,1fr);
 
-gap:25px;
+gap:30px;
+padding-top:10px;
 
 }
+
 
 @media(max-width:1100px){
 
@@ -97,7 +114,7 @@ margin-top:35px;
 
     margin-top:30px;
 
-    background:white;
+    background:rgb(248, 156, 156);
 
     border-radius:18px;
 

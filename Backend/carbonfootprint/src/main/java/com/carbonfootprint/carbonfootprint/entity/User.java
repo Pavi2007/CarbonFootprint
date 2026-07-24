@@ -6,6 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
+
 @Entity
 @Table(name="users")
 @Data
@@ -18,6 +20,7 @@ public class User {
 
     @Column(nullable = false)
     private String name;
+
 
     @Column(nullable = false, unique = true)
     private String email;
@@ -34,4 +37,8 @@ public class User {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private Role role;
+
+    private LocalDate lastLoginDate;
+
+    private Integer loginStreak = 0;
 }

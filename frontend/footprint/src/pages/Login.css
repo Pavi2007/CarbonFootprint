@@ -7,7 +7,9 @@
 
 body{
     margin:0;
+    background:#f2f9fb !important;
 }
+
 
 .login-page{
 
@@ -265,7 +267,7 @@ body{
     position:absolute;
     inset:0;
 
-    background: rgba(20,70,35,0.35);
+    background: rgba(65, 224, 113, 0.35);
 
 
     display:flex;
@@ -280,7 +282,7 @@ body{
 
     font-size:4rem;
 
-    color:#eaffea;
+    color:#88f588;
 
     font-weight:700;
 
@@ -348,7 +350,7 @@ body{
 
     border-radius:25px;
 
-    background:rgba(255,255,255,0.88);
+    background:rgba(242, 236, 236, 0.88);
 
     backdrop-filter:blur(10px);
 

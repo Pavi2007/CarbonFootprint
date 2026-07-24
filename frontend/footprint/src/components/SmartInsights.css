@@ -1,0 +1,39 @@
+.insights-card{
+
+    background:#f7f1f1;
+    border-radius:18px;
+    padding:25px;
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
+    margin-top:25px;
+
+}
+
+.insights-card h2{
+
+    color:#1B5E20;
+    margin-bottom:20px;
+
+}
+
+.insight-item{
+
+    padding:15px;
+    border-left:5px solid #2E7D32;
+    background:#c4f1c4;
+    border-radius:10px;
+    margin-bottom:15px;
+
+}
+
+.insight-item h4{
+
+    color:#2E7D32;
+    margin-bottom:5px;
+
+}
+
+.insight-item p{
+
+    color:#555;
+
+}

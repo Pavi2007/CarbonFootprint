@@ -1,0 +1,72 @@
+.filter-box{
+
+    display:flex;
+
+    gap:15px;
+
+    margin:25px 0;
+
+}
+
+.filter-box select,
+.filter-box input{
+
+    padding:10px;
+
+    border:1px solid #ccc;
+
+    border-radius:8px;
+
+}
+
+.filter-box button{
+
+    background:#2E7D32;
+
+    color:white;
+
+    border:none;
+
+    padding:10px 25px;
+
+    border-radius:8px;
+
+    cursor:pointer;
+
+}
+
+.activity-table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+    background:white;
+
+    box-shadow:0 5px 12px rgba(0,0,0,.08);
+
+}
+
+.activity-table th{
+
+    background:#2E7D32;
+
+    color:white;
+
+    padding:14px;
+
+}
+
+.activity-table td{
+
+    padding:12px;
+
+    border-bottom:1px solid #ddd;
+
+}
+
+.activity-table tr:hover{
+
+    background:#F5F7FA;
+
+}

@@ -2,11 +2,13 @@ package com.carbonfootprint.carbonfootprint.controller;
 
 import com.carbonfootprint.carbonfootprint.dto.ActivityRequest;
 import com.carbonfootprint.carbonfootprint.dto.ActivityResponse;
+import com.carbonfootprint.carbonfootprint.enums.ActivityType;
 import com.carbonfootprint.carbonfootprint.service.ActivityService;
-import lombok.RequiredArgsConstructor;
+import com.carbonfootprint.carbonfootprint.enums.Category;import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
-
+import java.time.LocalDate;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @RestController
 @RequestMapping("/api/activity")
@@ -46,6 +48,34 @@ public class ActivityController {
     public String deleteActivity(@PathVariable Long id) {
 
         return activityService.deleteActivity(id);
+
+    }
+    @GetMapping("/history")
+    public List<ActivityResponse> getHistory(
+
+            @RequestParam(required = false) String search,
+
+            @RequestParam(required = false) ActivityType activityType,
+
+            @RequestParam(required = false) Category category,
+
+            @RequestParam(required = false) LocalDate startDate,
+
+            @RequestParam(required = false) LocalDate endDate
+    ){
+
+        System.out.println("Search = " + search);
+        System.out.println("Activity = " + activityType);
+        System.out.println("Category = " + category);
+        System.out.println("Start = " + startDate);
+        System.out.println("End = " + endDate);
+        return activityService.getHistory(
+                search,
+                activityType,
+                category,
+                startDate,
+                endDate
+        );
 
     }
 }

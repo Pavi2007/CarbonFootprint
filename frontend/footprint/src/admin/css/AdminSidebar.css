@@ -1,0 +1,228 @@
+/* =========================
+        SIDEBAR
+========================= */
+
+.sidebar{
+
+    position: fixed;
+
+    top: 0;
+
+    left: 0;
+
+    width: 260px;
+
+    height: 100vh;
+
+    background: #163D2A;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: space-between;
+
+    color: white;
+
+    box-shadow: 4px 0 15px rgba(0,0,0,.15);
+
+    z-index: 1000;
+
+}
+
+/* =========================
+      TOP SECTION
+========================= */
+
+.sidebar-top{
+
+    display: flex;
+
+    flex-direction: column;
+
+}
+
+/* =========================
+          LOGO
+========================= */
+
+/* =========================
+          LOGO
+========================= */
+
+.logo{
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+
+    padding:30px 20px;
+    margin-bottom:30px;
+
+}
+
+.logo-circle{
+
+    width:90px;
+  
+
+    border-radius:50%;
+
+    background:#153e24;
+    padding-top:3px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    margin-bottom:10px;
+
+}
+
+.leaf-icon{
+
+    padding-top:180px;
+
+    font-size:38px;
+    color:white;
+
+}
+
+.logo-text{
+
+    text-align:center;
+
+}
+
+.logo-text h2{
+
+    margin:0;
+
+    color:white;
+
+    font-size:30px;
+
+    font-weight:700;
+
+    line-height:1.2;
+    padding-top:50px;
+
+}
+
+.logo-text span{
+
+    display:block;
+
+    margin-top:8px;
+
+    color:#A5D6A7;
+
+    font-size:15px;
+
+    font-weight:500;
+
+}
+
+/* =========================
+          MENU
+========================= */
+
+.menu{
+
+    list-style: none;
+
+    margin: 0;
+
+    padding: 10px;
+
+}
+
+.menu-link{
+
+    text-decoration: none;
+
+    color: white;
+
+}
+
+.menu-link li{
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    padding: 15px 18px;
+
+    margin-bottom: 8px;
+
+    border-radius: 12px;
+
+    font-size: 16px;
+
+    transition: .3s;
+
+}
+
+.menu-link li:hover{
+
+    background: #24593D;
+
+}
+
+.menu-link.active li{
+
+    background: white;
+
+    color: #163D2A;
+
+    font-weight: bold;
+
+}
+
+.menu-link svg{
+
+    font-size: 20px;
+
+}
+
+/* =========================
+        LOGOUT
+========================= */
+
+.logout-btn{
+
+    margin: 18px;
+
+    padding: 15px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background: #2E7D32;
+
+    color: white;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 10px;
+
+    cursor: pointer;
+
+    font-size: 17px;
+
+    transition: .3s;
+
+}
+
+.logout-btn:hover{
+
+    background: #D32F2F;
+
+}

@@ -1,44 +1,71 @@
 import "./History.css";
+import { useEffect, useState } from "react";
 import Sidebar from "../components/Sidebar";
 import Navbar from "../components/Navbar";
 import { FaSearch, FaEdit, FaTrash } from "react-icons/fa";
 
+import {
+    getHistory,
+    deleteActivity
+} from "../services/authService";
+
 const History = () => {
 
-    const activities = [
+    const [activities, setActivities] = useState([]);
 
-        {
-            id:1,
-            date:"08-07-2026",
-            activity:"TRANSPORT",
-            category:"CAR",
-            value:34,
-            unit:"km",
-            emission:"7.14 kg"
-        },
+const [search, setSearch] = useState("");
 
-        {
-            id:2,
-            date:"08-07-2026",
-            activity:"ELECTRICITY",
-            category:"HOME",
-            value:150,
-            unit:"kWh",
-            emission:"127.5 kg"
-        },
+const [activityType, setActivityType] = useState("");
 
-        {
-            id:3,
-            date:"08-07-2026",
-            activity:"SHOPPING",
-            category:"CLOTHING",
-            value:1000,
-            unit:"₹",
-            emission:"200 kg"
-        }
+const [category, setCategory] = useState("");
 
-    ];
+const [startDate, setStartDate] = useState("");
 
+const [endDate, setEndDate] = useState("");
+useEffect(() => {
+
+    loadHistory();
+
+}, [search, activityType, category, startDate, endDate]);
+
+const loadHistory = async () => {
+
+    try {
+
+        const params = {};
+
+        if (search) params.search = search;
+
+        if (activityType) params.activityType = activityType;
+
+        if (category) params.category = category;
+
+        if (startDate) params.startDate = startDate;
+
+        if (endDate) params.endDate = endDate;
+
+        const response = await getHistory(params);
+
+        console.log(response.data);
+
+        setActivities(response.data);
+
+    } catch (error) {
+
+        console.log(error);
+
+    }
+
+};
+const handleDelete = async(id)=>{
+
+    if(!window.confirm("Delete this activity?")) return;
+
+    await deleteActivity(id);
+
+    loadHistory();
+
+}
     return (
 
         <>
@@ -68,45 +95,69 @@ const History = () => {
         <FaSearch />
 
         <input
-            type="text"
-            placeholder="Search activity..."
-        />
+    type="text"
+    placeholder="Search activity..."
+    value={search}
+    onChange={(e)=>setSearch(e.target.value)}
+/>
 
     </div>
 
-    <select>
+    <select
+    value={activityType}
+    onChange={(e)=>setActivityType(e.target.value)}
+>
 
-        <option>All Activities</option>
+<option value="">All Activities</option>
 
-        <option>Transport</option>
+<option value="TRANSPORT">Transport</option>
 
-        <option>Electricity</option>
+<option value="ELECTRICITY">Electricity</option>
 
-        <option>Food</option>
+<option value="FOOD">Food</option>
 
-        <option>Shopping</option>
+<option value="SHOPPING">Shopping</option>
 
-    </select>
+</select>
 
-    <select>
 
-        <option>All Categories</option>
+    <select
+    value={category}
+    onChange={(e)=>setCategory(e.target.value)}
+>
 
-        <option>Car</option>
+<option value="">All Categories</option>
 
-        <option>Bike</option>
+<option value="CAR">Car</option>
 
-        <option>Bus</option>
+<option value="BUS">Bus</option>
 
-        <option>Home</option>
+<option value="TRAIN">Train</option>
 
-        <option>Clothing</option>
+<option value="FLIGHT">Flight</option>
 
-    </select>
+<option value="HOME">Home</option>
 
-    <input type="date"/>
+<option value="CLOTHING">Clothing</option>
 
-    <input type="date"/>
+<option value="GROCERY">Grocery</option>
+
+<option value="VEGETARIAN">Vegetarian</option>
+
+<option value="NON_VEGETARIAN">Non Vegetarian</option>
+
+</select>
+    <input
+    type="date"
+    value={startDate}
+    onChange={(e)=>setStartDate(e.target.value)}
+/>
+
+    <input
+    type="date"
+    value={endDate}
+    onChange={(e)=>setEndDate(e.target.value)}
+/>
 
     <div className="export-buttons">
 
@@ -152,45 +203,64 @@ const History = () => {
 
                         <tbody>
 
-                            {
+{
 
-                                activities.map((item)=>(
+activities.map((item)=>(
 
-                                    <tr key={item.id}>
+<tr key={item.id}>
 
-                                        <td>{item.date}</td>
+<td>
 
-                                        <td>{item.activity}</td>
+{new Date(item.activityDate).toLocaleDateString()}
 
-                                        <td>{item.category}</td>
+</td>
 
-                                        <td>{item.value} {item.unit}</td>
+<td>
 
-                                        <td>{item.emission}</td>
+{item.activityType}
 
-                                        <td>
+</td>
 
-                                            <button className="edit-btn">
+<td>
 
-                                                <FaEdit/>
+{item.category}
 
-                                            </button>
+</td>
 
-                                            <button className="delete-btn">
+<td>
 
-                                                <FaTrash/>
+{item.value} {item.unit}
 
-                                            </button>
+</td>
 
-                                        </td>
+<td>
 
-                                    </tr>
+{item.emission.toFixed(2)} kg
 
-                                ))
+</td>
 
-                            }
+<td>
 
-                        </tbody>
+
+
+<button
+className="delete-btn"
+onClick={()=>handleDelete(item.id)}
+>
+
+<FaTrash/>
+
+</button>
+
+</td>
+
+</tr>
+
+))
+
+}
+
+</tbody>
 
                     </table>
 

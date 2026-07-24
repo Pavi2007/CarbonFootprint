@@ -1,64 +1,96 @@
-const data = [
+import { useEffect, useState } from "react";
+import "./EmissionBreakdown.css";
 
-{ name:"Transport", percent:45, color:"#43A047" },
+import {
+  FaCar,
+  FaBolt,
+  FaUtensils,
+  FaShoppingBag,
+} from "react-icons/fa";
 
-{ name:"Electricity", percent:30, color:"#1976D2" },
+import { getBreakdown } from "../services/authService";
 
-{ name:"Food", percent:15, color:"#FB8C00" },
-
-{ name:"Shopping", percent:10, color:"#8E24AA" }
-
-];
+const icons = {
+  Transport: <FaCar />,
+  Electricity: <FaBolt />,
+  Food: <FaUtensils />,
+  Shopping: <FaShoppingBag />,
+};
 
 const EmissionBreakdown = () => {
 
-return(
+  const [breakdown, setBreakdown] = useState([]);
 
-<div className="breakdown-card">
+  useEffect(() => {
 
-<h2>Emission Breakdown</h2>
+    loadBreakdown();
 
-{
-data.map((item,index)=>(
+  }, []);
 
-<div className="progress-item" key={index}>
+  const loadBreakdown = async () => {
 
-<div className="progress-title">
+    try {
 
-<span>{item.name}</span>
+      const response = await getBreakdown();
 
-<span>{item.percent}%</span>
+      setBreakdown(response.data);
 
-</div>
+    }
 
-<div className="progress">
+    catch (error) {
 
-<div
+      console.log(error);
 
-className="progress-fill"
+    }
 
-style={{
+  };
 
-width:`${item.percent}%`,
+  return (
 
-background:item.color
+    <div className="breakdown-card">
 
-}}
+      <h2>Emission Breakdown</h2>
 
->
+      {
 
-</div>
+        breakdown.map((item, index) => (
 
-</div>
+          <div
+            className="breakdown-item"
+            key={index}
+          >
 
-</div>
+            <div className="breakdown-left">
 
-))
-}
+              <span className="icon">
 
-</div>
+                {icons[item.category]}
 
-);
+              </span>
+
+              <span>
+
+                {item.category}
+
+              </span>
+
+            </div>
+
+            <span className="value">
+
+              {item.emission.toFixed(2)} kg
+
+            </span>
+
+          </div>
+
+        ))
+
+      }
+
+    </div>
+
+  );
 
 };
 

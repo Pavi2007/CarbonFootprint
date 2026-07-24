@@ -261,6 +261,7 @@ catch(error){
                         <div className="form-grid">
 
                             <div className="form-group">
+        
 
                                 <label>Activity Type</label>
 
@@ -289,39 +290,10 @@ catch(error){
                                     <option value="SHOPPING">
                                         Shopping
                                     </option>
-
-                                </select>
-
-                            </div>
-
-                            <div className="form-group">
-
-                                <label>Category</label>
-
-                                <select
-                                    value={category}
-                                    onChange={(e) =>
-                                        setCategory(e.target.value)
-                                    }
-                                    required
-                                >
-
-                                    <option value="">
-                                        Select Category
+                                    <option value="OTHERS">
+                                        Others
                                     </option>
 
-                                    {
-                                        categories.map((item, index) => (
-
-                                            <option
-                                                key={index}
-                                                value={item}
-                                            >
-                                                {item}
-                                            </option>
-
-                                        ))
-                                    }
 
                                 </select>
 
@@ -329,31 +301,94 @@ catch(error){
 
                             <div className="form-group">
 
-                                <label>Value</label>
+    <label>Category</label>
 
-                                <input
-                                    type="number"
-                                    placeholder="Enter Value"
-                                    value={value}
-                                    onChange={(e) =>
-                                        setValue(e.target.value)
-                                    }
-                                    required
-                                />
+    {
 
-                            </div>
+        activityType === "OTHERS" ?
+
+        <input
+            type="text"
+            placeholder="Enter Category"
+            value={category}
+            onChange={(e)=>setCategory(e.target.value)}
+            required
+        />
+
+        :
+
+        <select
+            value={category}
+            onChange={(e)=>setCategory(e.target.value)}
+            required
+        >
+
+            <option value="">Select Category</option>
+
+            {
+
+                categories.map((item,index)=>(
+
+                    <option
+                        key={index}
+                        value={item}
+                    >
+                        {item}
+                    </option>
+
+                ))
+
+            }
+
+        </select>
+
+    }
+
+</div>
+
+<div className="form-group">
+
+    <label>Value</label>
+
+    <input
+        type="number"
+        placeholder="Enter Value"
+        value={value}
+        onChange={(e) => setValue(e.target.value)}
+        required
+    />
+
+</div>
 
                             <div className="form-group">
 
-                                <label>Unit</label>
+    <label>Unit</label>
 
-                                <input
-                                    type="text"
-                                    value={unit}
-                                    readOnly
-                                />
+    {
 
-                            </div>
+        activityType === "OTHERS" ? (
+
+            <input
+                type="text"
+                placeholder="Enter Unit"
+                value={unit}
+                onChange={(e)=>setUnit(e.target.value)}
+                required
+            />
+
+        ) : (
+
+            <input
+                type="text"
+                value={unit}
+                readOnly
+            />
+
+        )
+
+    }
+
+</div>
 
                             <div className="form-group">
 

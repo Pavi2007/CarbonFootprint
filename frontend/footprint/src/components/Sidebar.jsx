@@ -1,114 +1,132 @@
 import "./Sidebar.css";
-import {  NavLink, useNavigate } from "react-router-dom";
-import { logoutUser } from "../services/authService";
 
+import { NavLink } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
+import { FaAward } from "react-icons/fa";
 import {
+  FaLeaf,
   FaHome,
   FaClipboardList,
   FaChartPie,
   FaHistory,
-  FaLeaf,
+  FaBullseye,
+  FaLightbulb,
   FaCog,
   FaSignOutAlt
 } from "react-icons/fa";
 
 const Sidebar = () => {
-    const navigate = useNavigate();
+  
+  const navigate = useNavigate();
+
     const handleLogout = () => {
 
-    const confirmLogout = window.confirm(
-        "Are you sure you want to logout?"
-    );
+        // Remove JWT Token
+        localStorage.removeItem("token");
 
-    if (!confirmLogout) return;
+        // If you store user details
+        localStorage.removeItem("user");
 
-    logoutUser();
+        // Redirect to Home Page
+        navigate("/", { replace: true });
 
-    navigate("/login");
-
-};
+    };
 
   return (
-
     <div className="sidebar">
 
-      <div className="logo">
+      <div className="sidebar-top">
 
-        <div className="logo-circle">
+        {/* Logo */}
 
-          <FaLeaf />
+        <div className="logo">
+    <div className="logo-circle">
+        <FaLeaf className="leaf-icon" />
+    </div>
 
-        </div>
+    <h2>CarbonTrack</h2>
+</div>
 
-        <h2>CarbonTrack</h2>
+        {/* Menu */}
+
+        <ul className="menu">
+
+          <NavLink to="/dashboard" className="menu-link">
+            <li>
+              <FaHome />
+              Dashboard
+            </li>
+          </NavLink>
+
+          <NavLink to="/activity" className="menu-link">
+            <li>
+              <FaClipboardList />
+              Activity Log
+            </li>
+          </NavLink>
+
+          <NavLink to="/analytics" className="menu-link">
+            <li>
+              <FaChartPie />
+              Analytics
+            </li>
+          </NavLink>
+
+          <NavLink to="/history" className="menu-link">
+            <li>
+              <FaHistory />
+              History
+            </li>
+          </NavLink>
+
+          <NavLink to="/goal" className="menu-link">
+            <li>
+              <FaBullseye />
+              Sustainability Goals
+            </li>
+          </NavLink>
+
+          <li>
+          <NavLink to="/badges">
+            <FaAward className="menu-icon" />
+            <span>Badges</span>
+          </NavLink>
+        </li>
+          
+
+          <NavLink to="/recommendations" className="menu-link">
+            <li>
+              <FaLightbulb />
+              Recommendations
+            </li>
+          </NavLink>
+
+          <NavLink to="/settings" className="menu-link">
+            <li>
+              <FaCog />
+              Settings
+            </li>
+          </NavLink>
+
+        </ul>
 
       </div>
 
-      <ul className="sidebar-menu">
+      {/* Logout */}
 
-        <NavLink to="/dashboard" className="menu-link">
-          <li>
-            <FaHome />
-            Dashboard
-          </li>
-        </NavLink>
+      <button
+    className="logout-btn"
+    onClick={handleLogout}
+>
 
-        <NavLink to="/activity" className="menu-link">
-          <li>
-            <FaClipboardList />
-            Activity Log
-          </li>
-        </NavLink>
+    <FaSignOutAlt />
 
-        <NavLink to="/analytics" className="menu-link">
-          <li>
-            <FaChartPie />
-            Analytics
-          </li>
-        </NavLink>
+    Logout
 
-        <NavLink to="/history" className="menu-link">
-          <li>
-            <FaHistory />
-            History
-          </li>
-        </NavLink>
-
-        <NavLink to="/recommendations" className="menu-link">
-          <li>
-            <FaLeaf />
-            Recommendations
-          </li>
-        </NavLink>
-
-        <NavLink to="/settings" className="menu-link">
-          <li>
-            <FaCog />
-            Settings
-          </li>
-        </NavLink>
-
-      </ul>
-
-      <li>
-
-    <button
-        className="logout-link"
-        onClick={handleLogout}
-    >
-
-        <FaSignOutAlt />
-
-        <span>Logout</span>
-
-    </button>
-
-</li>
+</button>
 
     </div>
-
   );
-
 };
 
 export default Sidebar;

@@ -70,7 +70,7 @@
 .form-group input:focus,
 .form-group select:focus{
 
-    border-color:#2E7D32;
+    border-color:#1b4d1d;
 
 }
 
@@ -106,7 +106,7 @@
 
 .activity-table h2{
 
-    color:#1B5E20;
+    color:#154817;
     margin-bottom:20px;
 
 }
@@ -120,14 +120,16 @@ table{
 
 thead{
 
-    background:#2E7D32;
+    background:#173e19;
     color:white;
+    width:100%;
+
 
 }
 
 th{
 
-    padding:15px;
+    padding:18px;
     text-align:center;
 
 }
@@ -188,7 +190,7 @@ overflow-x:auto;
 .delete-btn{
 
     border:none;
-    padding:4px 4px;
+    padding:9px 8px;
     border-radius:4px;
     color:white;
     cursor:pointer;

@@ -120,7 +120,7 @@ const CarbonLineChart = () => {
           <Line
             type="monotone"
             dataKey="emission"
-            stroke="#2E7D32"
+            stroke="#ae3b4e"
             strokeWidth={4}
             dot={{ r: 5 }}
             activeDot={{ r: 8 }}

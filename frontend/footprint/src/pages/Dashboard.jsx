@@ -6,73 +6,67 @@ import Navbar from "../components/Navbar";
 import DashboardCard from "../components/DashboardCard";
 import CarbonPieChart from "../components/PieChart";
 import CarbonLineChart from "../components/LineChart";
-import GoalProgress from "../components/GoalProgress";
-import CarbonInsights from "../components/CarbonInsights";
+import EmissionBreakdown from "../components/EmissionBreakdown";
 
 import { getDashboard } from "../services/authService";
 
 import {
   FaClipboardList,
   FaLeaf,
+  FaCalendarDay,
   FaStar,
-  FaBullseye,
 } from "react-icons/fa";
 
 const Dashboard = () => {
 
   const [dashboardData, setDashboardData] = useState({
+
     totalActivities: 0,
     totalEmission: 0,
-    carEmission: 0,
-    busEmission: 0,
-    trainEmission: 0,
-    flightEmission: 0,
-    electricityEmission: 0,
-    foodEmission: 0,
+    todayEmission: 0,
+    monthlyEmission: 0,
+    carbonScore: 0,
+
   });
 
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
 
-    const fetchDashboard = async () => {
-
-      try {
-
-        const response = await getDashboard();
-
-        setDashboardData(response.data);
-
-      } catch (error) {
-
-        console.error("Dashboard Error:", error);
-
-      } finally {
-
-        setLoading(false);
-
-      }
-
-    };
-
-    fetchDashboard();
+    loadDashboard();
 
   }, []);
 
-  // Temporary calculation until backend provides these values
-  const carbonScore = Math.max(
-    0,
-    Math.round(100 - dashboardData.totalEmission / 10)
-  );
+  const loadDashboard = async () => {
 
-  const goalCompletion = Math.min(
-    100,
-    carbonScore
-  );
+    try {
+
+      const response = await getDashboard();
+
+      console.log(response.data);
+
+      setDashboardData(response.data);
+
+    }
+
+    catch (error) {
+
+      console.log(error);
+
+    }
+
+    finally {
+
+      setLoading(false);
+
+    }
+
+  };
 
   if (loading) {
 
     return (
+
       <>
         <Sidebar />
         <Navbar />
@@ -82,14 +76,19 @@ const Dashboard = () => {
           <h2>Loading Dashboard...</h2>
 
         </main>
+
       </>
+
     );
 
   }
 
   return (
+
     <>
+
       <Sidebar />
+
       <Navbar />
 
       <main className="dashboard">
@@ -101,12 +100,14 @@ const Dashboard = () => {
           <h1>Welcome Back 👋</h1>
 
           <p>
+
             Track your carbon footprint and achieve your sustainability goals.
+
           </p>
 
         </section>
 
-        {/* Cards */}
+        {/* Dashboard Cards */}
 
         <section className="cards-grid">
 
@@ -114,28 +115,28 @@ const Dashboard = () => {
             title="Activities"
             value={dashboardData.totalActivities}
             icon={<FaClipboardList />}
-            color="#1976D2"
+            color="#9fc5eb"
           />
 
           <DashboardCard
-            title="CO₂ Emission"
-            value={`${dashboardData.totalEmission.toFixed(2)} kg`}
+            title="Total Emission"
+            value={`${(dashboardData.totalEmission ?? 0).toFixed(2)} kg`}
             icon={<FaLeaf />}
-            color="#2E7D32"
+            color="#7df683"
+          />
+
+          <DashboardCard
+            title="Today's Emission"
+            value={`${(dashboardData.todayEmission ?? 0).toFixed(2)} kg`}
+            icon={<FaCalendarDay />}
+            color="#e6b3cd"
           />
 
           <DashboardCard
             title="Carbon Score"
-            value={carbonScore}
+            value={dashboardData.carbonScore ?? 0}
             icon={<FaStar />}
-            color="#F9A825"
-          />
-
-          <DashboardCard
-            title="Goal Completion"
-            value={`${goalCompletion}%`}
-            icon={<FaBullseye />}
-            color="#D32F2F"
+            color="#2ee4ed"
           />
 
         </section>
@@ -146,37 +147,28 @@ const Dashboard = () => {
 
           <div className="pie-box">
 
-            <CarbonPieChart dashboardData={dashboardData} />
+            <CarbonPieChart />
 
           </div>
 
           <div className="line-box">
 
-            <CarbonLineChart dashboardData={dashboardData} />
+            <CarbonLineChart />
 
           </div>
 
         </div>
 
-        {/* Goal */}
+        {/* Breakdown */}
 
-        <div className="goal-box">
-
-          <GoalProgress
-            progress={goalCompletion}
-          />
-
-        </div>
-
-        {/* Insights */}
-
-        <CarbonInsights
-          dashboardData={dashboardData}
-        />
+        <EmissionBreakdown />
 
       </main>
+
     </>
+
   );
+
 };
 
 export default Dashboard;

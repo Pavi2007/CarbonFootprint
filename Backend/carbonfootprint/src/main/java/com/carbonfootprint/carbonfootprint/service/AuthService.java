@@ -16,11 +16,15 @@ public class AuthService {
     private final PasswordEncoder passwordEncoder;
     private final UserRepository userRepository;
     private final JwtService jwtService;
+    private final BadgeService badgeService;
 
     public AuthResponse register(RegisterRequest request){
+
+
         if (userRepository.existsByEmail(request.getEmail())) {
             return new AuthResponse(
                     "Email already exists",
+                    null,
                     null,
                     null
             );
@@ -39,11 +43,11 @@ public class AuthService {
         user.setRole(Role.USER);
 
         userRepository.save(user);
-
         return new AuthResponse(
                 "Registration Successful",
                 user.getRole(),
-                null
+                null,
+                user.getName()
         );
     }
     public AuthResponse login(LoginRequest request) {
@@ -52,18 +56,20 @@ public class AuthService {
                 .orElse(null);
 
         if (user == null) {
-            return new AuthResponse("User not found", null,null);
+            return new AuthResponse("User not found", null,null,null);
         }
 
         if (!passwordEncoder.matches(request.getPassword(), user.getPassword())) {
-            return new AuthResponse("Invalid Password", null,null);
+            return new AuthResponse("Invalid Password", null,null,null);
         }
+        badgeService.updateLoginStreak(user);
         String token = jwtService.generateToken(user.getEmail());
 
         return new AuthResponse(
                 "Login Successful",
                 user.getRole(),
-                token
+                token,
+                user.getName()
         );
 
     }

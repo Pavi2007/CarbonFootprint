@@ -4,10 +4,11 @@ import com.carbonfootprint.carbonfootprint.dto.ActivityRequest;
 import com.carbonfootprint.carbonfootprint.dto.ActivityResponse;
 import com.carbonfootprint.carbonfootprint.entity.Activity;
 import com.carbonfootprint.carbonfootprint.entity.User;
+import com.carbonfootprint.carbonfootprint.enums.ActivityType;
 import com.carbonfootprint.carbonfootprint.repository.ActivityRepository;
 import com.carbonfootprint.carbonfootprint.repository.UserRepository;
 import com.carbonfootprint.carbonfootprint.util.EmissionCalculator;
-import lombok.RequiredArgsConstructor;
+import com.carbonfootprint.carbonfootprint.enums.Category;import lombok.RequiredArgsConstructor;
 import org.springframework.jmx.export.metadata.ManagedMetric;
 import org.springframework.stereotype.Service;
 import org.springframework.security.core.Authentication;
@@ -19,7 +20,8 @@ import org.springframework.security.access.AccessDeniedException;
 @Service
 @RequiredArgsConstructor
 public class ActivityService {
-
+    private final BadgeService badgeService;
+    private final GoalService goalService;
     private final ActivityRepository activityRepository;
     private final UserRepository userRepository;
     private final EmissionCalculator emissionCalculator;
@@ -43,7 +45,6 @@ public class ActivityService {
         String email = authentication.getName();
         User user = userRepository.findByEmail(email)
                 .orElseThrow(() -> new RuntimeException("User not found"));
-        System.out.println("Logged in User : " + email);
         Activity activity = new Activity();
         activity.setActivityType(request.getActivityType());
         activity.setValue(request.getValue());
@@ -51,19 +52,35 @@ public class ActivityService {
         activity.setActivityDate(request.getActivityDate());
         activity.setCategory(request.getCategory());
 
-        double emission = emissionCalculator.calculateEmission(
-                request.getActivityType(),
-                request.getCategory(),
-                request.getValue()
-        );
+        double emission;
+
+        if (request.getActivityType() == ActivityType.OTHERS) {
+
+            // For custom activities, no predefined emission factor
+            emission = 0.0;
+
+        } else {
+
+            emission = emissionCalculator.calculateEmission(
+                    request.getActivityType(),
+                    request.getCategory(),
+                    request.getValue()
+            );
+
+        }
+
+        activity.setEmission(emission);
 
         activity.setEmission(emission);
         activity.setUser(user);
         // User will be added after JWT integration
 
         Activity savedActivity = activityRepository.save(activity);
+        badgeService.checkGlobalRankBadge(user);
 
-        ManagedMetric response;
+        goalService.getActiveGoals().forEach(goal -> {
+            goalService.getGoalProgress(goal.getId());
+        });
         return new ActivityResponse(
                 savedActivity.getId(),
                 savedActivity.getActivityType(),
@@ -146,6 +163,10 @@ public class ActivityService {
         activity.setEmission(emission);
 
         Activity updatedActivity = activityRepository.save(activity);
+        badgeService.checkGlobalRankBadge(loggedInUser);
+        goalService.getActiveGoals().forEach(goal -> {
+            goalService.getGoalProgress(goal.getId());
+        });
 
         return new ActivityResponse(
                 updatedActivity.getId(),
@@ -168,8 +189,108 @@ public class ActivityService {
             throw new RuntimeException("Access Denied");
         }
         activityRepository.delete(activity);
+        badgeService.checkGlobalRankBadge(loggedInUser);
+        goalService.getActiveGoals().forEach(goal -> {
+            goalService.getGoalProgress(goal.getId());
+        });
 
         return "Activity Deleted Successfully";
     }
+    public List<ActivityResponse> getHistory(
+
+            String search,
+
+            ActivityType activityType,
+
+            Category category,
+
+            LocalDate startDate,
+
+            LocalDate endDate
+    ) {
+
+        User user = getLoggedInUser();
+
+        List<Activity> activities = activityRepository.findByUser(user);
+
+        return activities.stream()
+
+                // Search
+                .filter(a ->
+                        search == null ||
+                                search.isBlank() ||
+
+                                a.getActivityType()
+                                        .toString()
+                                        .toLowerCase()
+                                        .contains(search.toLowerCase())
+
+                                ||
+
+                                a.getCategory()
+                                        .toString()
+                                        .toLowerCase()
+                                        .contains(search.toLowerCase())
+                )
+
+                // Activity Type
+                .filter(a ->
+
+                        activityType == null ||
+
+                                a.getActivityType() == activityType
+
+                )
+
+                // Category
+                .filter(a ->
+                        category == null ||
+                                a.getCategory().equalsIgnoreCase(category.name())
+                )
+
+                // Start Date
+                .filter(a ->
+
+                        startDate == null ||
+
+                                !a.getActivityDate().isBefore(startDate)
+
+                )
+
+                // End Date
+                .filter(a ->
+
+                        endDate == null ||
+
+                                !a.getActivityDate().isAfter(endDate)
+
+                )
+
+                .map(a ->
+
+                        new ActivityResponse(
+
+                                a.getId(),
+
+                                a.getActivityType(),
+
+                                a.getCategory(),
+
+                                a.getValue(),
+
+                                a.getUnit(),
+
+                                a.getEmission(),
+
+                                a.getActivityDate()
+
+                        )
+
+                )
+
+                .toList();
+
+    }
+
 
 }

@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import "./PieChart.css";
 
 import {
@@ -9,50 +10,62 @@ import {
   Legend,
 } from "recharts";
 
+import { getBreakdown } from "../services/authService";
+
 const COLORS = [
-  "#2E7D32",
-  "#1976D2",
-  "#FF9800",
-  "#E53935",
-  "#8E24AA",
-  "#26A69A",
+  "#d5760a",
+  "#034fa6",
+  "#51e349",
+  "#ca4c4c",
+  "#d88d1d"
 ];
 
-const CarbonPieChart = ({ dashboardData }) => {
+const CarbonPieChart = () => {
 
-const data = [
-  {
-    name: "Car",
-    value: dashboardData?.carEmission || 0,
-  },
-  {
-    name: "Bus",
-    value: dashboardData?.busEmission || 0,
-  },
-  {
-    name: "Train",
-    value: dashboardData?.trainEmission || 0,
-  },
-  {
-    name: "Flight",
-    value: dashboardData?.flightEmission || 0,
-  },
-  {
-    name: "Electricity",
-    value: dashboardData?.electricityEmission || 0,
-  },
-  {
-    name: "Food",
-    value: dashboardData?.foodEmission || 0,
-  },
-];
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+
+    loadData();
+
+  }, []);
+
+  const loadData = async () => {
+
+    try {
+
+      const response = await getBreakdown();
+
+      const chartData = response.data.map(item => ({
+
+        name: item.category,
+
+        value: item.emission,
+
+      }));
+
+      setData(chartData);
+
+    }
+
+    catch(error){
+
+      console.log(error);
+
+    }
+
+  };
 
   return (
+
     <div className="chart-card">
 
       <h2>Carbon Emission Distribution</h2>
 
-      <ResponsiveContainer width="100%" height={300}>
+      <ResponsiveContainer
+        width="100%"
+        height={300}
+      >
 
         <PieChart>
 
@@ -60,33 +73,38 @@ const data = [
             data={data}
             dataKey="value"
             nameKey="name"
-            outerRadius={90}
-            innerRadius={45}
-            paddingAngle={3}
+            outerRadius={95}
+            innerRadius={50}
             label
           >
 
-            {data.map((entry, index) => (
+            {
 
-              <Cell
-                key={index}
-                fill={COLORS[index % COLORS.length]}
-              />
+              data.map((entry,index)=>(
 
-            ))}
+                <Cell
+                  key={index}
+                  fill={COLORS[index % COLORS.length]}
+                />
+
+              ))
+
+            }
 
           </Pie>
 
           <Tooltip />
 
-          <Legend verticalAlign="bottom" height={36} />
+          <Legend />
 
         </PieChart>
 
       </ResponsiveContainer>
 
     </div>
+
   );
+
 };
 
 export default CarbonPieChart;

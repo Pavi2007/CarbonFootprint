@@ -72,6 +72,22 @@ public class EmissionCalculator {
                     default:
                         return value * 0.15;
                 }
+            case OTHERS:
+
+                switch (category.toUpperCase()) {
+
+                    case "BURNING":
+                        return value * 2.5;
+
+                    case "WASTE":
+                        return value * 1.8;
+
+                    case "OTHER":
+                        return value * 1.0;
+
+                    default:
+                        return value * 1.5;
+                }
 
             default:
                 return 0;

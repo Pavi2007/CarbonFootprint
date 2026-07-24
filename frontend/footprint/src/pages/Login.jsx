@@ -26,57 +26,54 @@ function Login() {
 
     };
 
-    const handleSubmit = async (e) => {
+   const handleSubmit = async (e) => {
 
-        e.preventDefault();
+    e.preventDefault();
 
-        try {
+    try {
 
-             const response = await loginUser(formData);
-
-        // Save JWT token
-        localStorage.setItem("token", response.data.token);
-
-        // Optional: Save role if needed
-        localStorage.setItem("role", response.data.role);
+        const response = await loginUser(formData);
 
         alert(response.data.message);
 
-            if (response.data.message === "Login Successful") {
+        if (response.data.message === "Login Successful") {
 
-                // Save JWT token
-                localStorage.setItem("token", response.data.token);
+            localStorage.setItem("token", response.data.token);
 
-                // Go to Dashboard
+            localStorage.setItem("role", response.data.role);
+            localStorage.setItem("name", response.data.name);
+
+            if (response.data.role === "ADMIN") {
+
+                navigate("/admin/dashboard");
+
+            } else {
+
                 navigate("/dashboard");
 
             }
 
-            else if (response.data.message === "User not found") {
+        } else if (response.data.message === "User not found") {
 
-                alert("User not found. Please Register First.");
+            alert("User not found. Please Register First.");
 
-                navigate("/register");
+            navigate("/register");
 
-            }
+        } else if (response.data.message === "Invalid Password") {
 
-            else if (response.data.message === "Invalid Password") {
-
-                alert("Invalid Password");
-
-            }
+            alert("Invalid Password");
 
         }
 
-        catch (error) {
+    } catch (error) {
 
-            console.log(error);
+        console.log(error);
 
-            alert("Login Failed");
+        alert("Login Failed");
 
-        }
+    }
 
-    };
+};
 
     return (
 

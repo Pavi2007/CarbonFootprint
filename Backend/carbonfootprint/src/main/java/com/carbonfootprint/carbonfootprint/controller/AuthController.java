@@ -11,6 +11,7 @@ import com.carbonfootprint.carbonfootprint.dto.LoginRequest;
 @RequiredArgsConstructor
 public class AuthController {
 
+
     private final AuthService authService;
 
 

@@ -1,13 +1,11 @@
 package com.carbonfootprint.carbonfootprint.controller;
 
-import com.carbonfootprint.carbonfootprint.dto.ActivityResponse;
-import com.carbonfootprint.carbonfootprint.dto.DashboardResponse;
-import com.carbonfootprint.carbonfootprint.dto.DashboardTrendResponse;
-import com.carbonfootprint.carbonfootprint.dto.TrendResponse;
+import com.carbonfootprint.carbonfootprint.dto.*;
 import com.carbonfootprint.carbonfootprint.service.DashboardService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -41,6 +39,23 @@ public class DashboardController {
     public List<TrendResponse> weeklyTrend(){
 
         return dashboardService.getWeeklyTrend();
+
+    }
+    @GetMapping("/yearly-trend")
+    public List<DashboardTrendResponse> getYearlyTrend(){
+
+        return dashboardService.getYearlyTrend();
+
+    }
+    @GetMapping("/breakdown")
+    public List<BreakdownResponse> getBreakdown(
+
+            @RequestParam(defaultValue = "monthly")
+            String period
+
+    ){
+
+        return dashboardService.getBreakdown(period);
 
     }
 

@@ -1,8 +1,6 @@
 package com.carbonfootprint.carbonfootprint.service;
 
-import com.carbonfootprint.carbonfootprint.dto.ActivityResponse;
-import com.carbonfootprint.carbonfootprint.dto.DashboardResponse;
-import com.carbonfootprint.carbonfootprint.dto.TrendResponse;
+import com.carbonfootprint.carbonfootprint.dto.*;
 import com.carbonfootprint.carbonfootprint.entity.Activity;
 import com.carbonfootprint.carbonfootprint.entity.User;
 import com.carbonfootprint.carbonfootprint.repository.ActivityRepository;
@@ -11,11 +9,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
-
+import java.time.LocalDate;
+import java.time.YearMonth;
 import java.time.DayOfWeek;
 import java.util.*;
-
-import com.carbonfootprint.carbonfootprint.dto.DashboardTrendResponse;
 
 import java.time.format.TextStyle;
 
@@ -46,57 +43,84 @@ public class DashboardService {
 
         Long totalActivities = (long) activities.size();
 
-        Double totalEmission = activities.stream()
+        double totalEmission = activities.stream()
                 .mapToDouble(Activity::getEmission)
                 .sum();
 
-        double carEmission = 0;
-        double busEmission = 0;
-        double trainEmission = 0;
-        double flightEmission = 0;
-        double electricityEmission = 0;
-        double foodEmission = 0;
+        LocalDate today = LocalDate.now();
 
-        for (Activity activity : activities) {
+        double todayEmission = activities.stream()
+                .filter(activity ->
+                        activity.getActivityDate().equals(today))
+                .mapToDouble(Activity::getEmission)
+                .sum();
 
-            switch (activity.getActivityType()) {
+        YearMonth currentMonth = YearMonth.now();
 
-                case CAR:
-                    carEmission += activity.getEmission();
-                    break;
+        double monthlyEmission = activities.stream()
+                .filter(activity ->
+                        YearMonth.from(activity.getActivityDate())
+                                .equals(currentMonth))
+                .mapToDouble(Activity::getEmission)
+                .sum();
 
-                case BUS:
-                    busEmission += activity.getEmission();
-                    break;
+        int carbonScore;
 
-                case TRAIN:
-                    trainEmission += activity.getEmission();
-                    break;
+        if (monthlyEmission <= 100) {
 
-                case FLIGHT:
-                    flightEmission += activity.getEmission();
-                    break;
+            carbonScore = 100;
 
-                case ELECTRICITY:
-                    electricityEmission += activity.getEmission();
-                    break;
+        }
+        else if (monthlyEmission <= 250) {
 
-                case FOOD:
-                    foodEmission += activity.getEmission();
-                    break;
-            }
+            carbonScore = 90;
+
+        }
+        else if (monthlyEmission <= 500) {
+
+            carbonScore = 80;
+
+        }
+        else if (monthlyEmission <= 750) {
+
+            carbonScore = 70;
+
+        }
+        else if (monthlyEmission <= 1000) {
+
+            carbonScore = 60;
+
+        }
+        else if (monthlyEmission <= 1250) {
+
+            carbonScore = 50;
+
+        }
+        else if (monthlyEmission <= 1500) {
+
+            carbonScore = 40;
+
+        }
+        else {
+
+            carbonScore = 30;
+
         }
 
         return new DashboardResponse(
+
                 totalActivities,
+
                 totalEmission,
-                carEmission,
-                busEmission,
-                trainEmission,
-                flightEmission,
-                electricityEmission,
-                foodEmission
+
+                todayEmission,
+
+                monthlyEmission,
+
+                carbonScore
+
         );
+
     }
     public List<ActivityResponse> getRecentActivities() {
 
@@ -121,21 +145,30 @@ public class DashboardService {
 
         User user = getLoggedInUser();
 
-        List<Activity> activities =
-                activityRepository.findByUser(user);
+        List<Activity> activities = activityRepository.findByUser(user);
 
-        Map<String, Double> monthMap = new TreeMap<>();
+        Map<String, Double> monthMap = new LinkedHashMap<>();
+
+        String[] months = {
+                "Jan","Feb","Mar","Apr","May","Jun",
+                "Jul","Aug","Sep","Oct","Nov","Dec"
+        };
+
+        for(String month : months){
+
+            monthMap.put(month,0.0);
+
+        }
 
         for(Activity activity : activities){
 
             String month = activity.getActivityDate()
                     .getMonth()
-                    .getDisplayName(TextStyle.SHORT, Locale.ENGLISH);
+                    .getDisplayName(TextStyle.SHORT,Locale.ENGLISH);
 
             monthMap.put(
                     month,
-                    monthMap.getOrDefault(month,0.0)
-                            + activity.getEmission()
+                    monthMap.get(month)+activity.getEmission()
             );
 
         }
@@ -143,7 +176,7 @@ public class DashboardService {
         List<DashboardTrendResponse> response =
                 new ArrayList<>();
 
-        for(Map.Entry<String,Double> entry : monthMap.entrySet()){
+        for(Map.Entry<String,Double> entry:monthMap.entrySet()){
 
             response.add(
 
@@ -162,6 +195,7 @@ public class DashboardService {
         return response;
 
     }
+
     public List<TrendResponse> getWeeklyTrend() {
 
         User user = getLoggedInUser();
@@ -193,6 +227,186 @@ public class DashboardService {
                         e.getKey().toString().substring(0,3),
                         e.getValue()))
                 .toList();
+
+    }
+    public List<DashboardTrendResponse> getYearlyTrend(){
+
+        User user = getLoggedInUser();
+
+        List<Activity> activities =
+                activityRepository.findByUser(user);
+
+        Map<Integer,Double> yearMap = new TreeMap<>();
+
+        for(Activity activity : activities){
+
+            int year = activity.getActivityDate().getYear();
+
+            yearMap.put(
+
+                    year,
+
+                    yearMap.getOrDefault(year,0.0)
+                            + activity.getEmission()
+
+            );
+
+        }
+
+        List<DashboardTrendResponse> response =
+                new ArrayList<>();
+
+        for(Map.Entry<Integer,Double> entry : yearMap.entrySet()){
+
+            response.add(
+
+                    new DashboardTrendResponse(
+
+                            String.valueOf(entry.getKey()),
+
+                            entry.getValue()
+
+                    )
+
+            );
+
+        }
+
+        return response;
+
+    }
+
+    public List<BreakdownResponse> getBreakdown(String period){
+
+        User user = getLoggedInUser();
+
+        List<Activity> activities = activityRepository.findByUser(user);
+
+        LocalDate today = LocalDate.now();
+
+        if(period.equalsIgnoreCase("daily")){
+
+            activities = activities.stream()
+
+                    .filter(a -> a.getActivityDate().equals(today))
+
+                    .toList();
+
+        }
+
+        else if(period.equalsIgnoreCase("weekly")){
+
+            LocalDate start = today.minusDays(6);
+
+            activities = activities.stream()
+
+                    .filter(a ->
+
+                            !a.getActivityDate().isBefore(start)
+
+                                    &&
+
+                                    !a.getActivityDate().isAfter(today)
+
+                    )
+
+                    .toList();
+
+        }
+
+        else{
+
+            activities = activities.stream()
+
+                    .filter(a ->
+
+                            a.getActivityDate().getMonth() == today.getMonth()
+
+                                    &&
+
+                                    a.getActivityDate().getYear() == today.getYear()
+
+                    )
+
+                    .toList();
+
+        }
+
+        Map<String,Double> map = new LinkedHashMap<>();
+
+        map.put("Transport",0.0);
+        map.put("Electricity",0.0);
+        map.put("Food",0.0);
+        map.put("Shopping",0.0);
+        map.put("Others",0.0);
+
+        for(Activity activity : activities){
+
+            switch(activity.getActivityType()){
+
+                case TRANSPORT:
+
+                    map.put(
+                            "Transport",
+                            map.get("Transport") + activity.getEmission()
+                    );
+                    break;
+
+                case ELECTRICITY:
+
+                    map.put(
+                            "Electricity",
+                            map.get("Electricity") + activity.getEmission()
+                    );
+                    break;
+
+                case FOOD:
+
+                    map.put(
+                            "Food",
+                            map.get("Food") + activity.getEmission()
+                    );
+                    break;
+
+                case SHOPPING:
+
+                    map.put(
+                            "Shopping",
+                            map.get("Shopping") + activity.getEmission()
+                    );
+                    break;
+
+                case OTHERS:
+
+                    map.put(
+                            "Others",
+                            map.get("Others") + activity.getEmission()
+                    );
+                    break;
+
+            }
+
+        }
+
+        List<BreakdownResponse> response = new ArrayList<>();
+
+        for(Map.Entry<String,Double> entry : map.entrySet()){
+
+            response.add(
+
+                    new BreakdownResponse(
+
+                            entry.getKey(),
+
+                            entry.getValue()
+
+                    )
+
+            );
+
+        }
+
+        return response;
 
     }
 }
