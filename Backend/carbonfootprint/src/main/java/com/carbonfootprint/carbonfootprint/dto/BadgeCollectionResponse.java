@@ -17,6 +17,14 @@ public class BadgeCollectionResponse {
 
     private BadgeLevel badgeLevel;
 
+    private boolean earned;      // <-- Add this
+
     private LocalDate earnedDate;
+
+    private String title;
+
+    private String description;
+
+    private String requirement;
 
 }

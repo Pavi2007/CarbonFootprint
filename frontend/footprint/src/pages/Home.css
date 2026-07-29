@@ -3,11 +3,10 @@
     padding:0;
     box-sizing:border-box;
     font-family:"Poppins",sans-serif;
-    
 }
 
 body{
-    background:#bcdeed;
+    background:#eef7fb;
 }
 
 .home{
@@ -17,9 +16,37 @@ body{
 /* ================= HERO ================= */
 
 .hero{
-    width:85%;
-    margin:40px auto 35px;
-    text-align:center;
+    width:90%;
+    max-width:1400px;
+    margin:40px auto 60px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:40px;
+}
+
+.hero-left{
+    flex:1;
+}
+
+.hero-right{
+    flex:1;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.hero-right img{
+    width:100%;
+    max-width:520px;
+    border-radius:25px;
+    object-fit:cover;
+    box-shadow:0 15px 35px rgba(0,0,0,.12);
+    transition:.4s;
+}
+
+.hero-right img:hover{
+    transform:scale(1.03);
 }
 
 .tag{
@@ -30,14 +57,14 @@ body{
     border-radius:30px;
     font-size:14px;
     font-weight:600;
-    margin-bottom:18px;
+    margin-bottom:20px;
 }
 
 .hero h1{
-    font-size:52px;
-    line-height:1.2;
+    font-size:60px;
+    line-height:1.15;
     color:#163C2D;
-    margin-bottom:15px;
+    margin-bottom:20px;
 }
 
 .hero h1 span{
@@ -45,32 +72,31 @@ body{
 }
 
 .hero p{
-    width:60%;
-    margin:0 auto 25px;
-    color:#666;
-    font-size:17px;
-    line-height:1.7;
+    color:#555;
+    font-size:19px;
+    line-height:1.8;
+    margin-bottom:35px;
+    max-width:580px;
 }
 
 .hero-buttons{
     display:flex;
-    justify-content:center;
-    gap:15px;
+    gap:18px;
 }
 
 .primary-btn{
     background:#2E7D32;
     color:white;
     border:none;
-    padding:12px 30px;
+    padding:14px 32px;
     border-radius:40px;
-    font-size:15px;
+    font-size:16px;
     cursor:pointer;
     transition:.3s;
 }
 
 .primary-btn:hover{
-    background:#256528;
+    background:#245d28;
     transform:translateY(-2px);
 }
 
@@ -78,9 +104,9 @@ body{
     background:white;
     color:#2E7D32;
     border:2px solid #2E7D32;
-    padding:12px 30px;
+    padding:14px 32px;
     border-radius:40px;
-    font-size:15px;
+    font-size:16px;
     cursor:pointer;
     transition:.3s;
 }
@@ -93,105 +119,123 @@ body{
 /* ================= AWARENESS ================= */
 
 .awareness{
-    width:85%;
-    margin:25px auto;
+    width:90%;
+    margin:auto;
     background:white;
-    border-radius:18px;
-    padding:28px;
-    box-shadow:0 4px 15px rgba(0,0,0,.06);
+    padding:35px;
+    border-radius:20px;
+    box-shadow:0 6px 18px rgba(0,0,0,.08);
     text-align:center;
 }
 
 .awareness h2{
     color:#2E7D32;
-    margin-bottom:12px;
-    font-size:28px;
+    font-size:34px;
+    margin-bottom:15px;
 }
 
 .awareness p{
-    color:#555;
-    line-height:1.8;
-    width:80%;
+    width:85%;
     margin:auto;
+    line-height:1.9;
+    color:#555;
 }
 
 /* ================= WORKFLOW ================= */
 
 .workflow{
-    width:85%;
-    margin:30px auto;
+    width:90%;
+    margin:45px auto;
 }
 
 .workflow h2{
     text-align:center;
     color:#163C2D;
-    margin-bottom:22px;
-    font-size:30px;
+    font-size:34px;
+    margin-bottom:30px;
 }
 
 .workflow-grid{
     display:grid;
     grid-template-columns:repeat(4,1fr);
-    gap:18px;
+    gap:22px;
 }
 
 .workflow-card{
     background:white;
+    padding:25px;
     border-radius:18px;
-    padding:22px;
     text-align:center;
-    box-shadow:0 4px 15px rgba(0,0,0,.06);
+    box-shadow:0 5px 18px rgba(0,0,0,.08);
     transition:.3s;
 }
 
 .workflow-card:hover{
-    transform:translateY(-4px);
+    transform:translateY(-5px);
 }
 
 .emoji{
-    font-size:40px;
-    margin-bottom:12px;
+    font-size:42px;
+    margin-bottom:15px;
 }
 
 .workflow-card h3{
     color:#163C2D;
-    margin-bottom:8px;
+    margin-bottom:10px;
 }
 
 .workflow-card p{
     color:#666;
-    font-size:14px;
 }
 
 /* ================= FOOTER ================= */
 
 .footer{
-    margin-top:30px;
-    background:#1b7228;
+    background:#1B7228;
     color:white;
     text-align:center;
-    padding:22px;
+    padding:30px;
+    margin-top:40px;
 }
 
 .footer h2{
-    margin-bottom:8px;
+    margin-bottom:10px;
 }
 
 .footer p{
-    margin-bottom:6px;
-    color:#CFE8D2;
+    color:#D4F1D8;
+    margin-bottom:8px;
 }
 
 .footer small{
-    color:#A7C7AE;
+    color:#B5DDBA;
 }
 
 /* ================= RESPONSIVE ================= */
 
-@media(max-width:900px){
+@media(max-width:992px){
+
+.hero{
+    flex-direction:column-reverse;
+    text-align:center;
+}
+
+.hero-left{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}
 
 .hero p{
-    width:90%;
+    max-width:100%;
+}
+
+.hero-buttons{
+    justify-content:center;
+}
+
+.hero-right img{
+    max-width:380px;
 }
 
 .workflow-grid{
@@ -203,11 +247,7 @@ body{
 @media(max-width:600px){
 
 .hero h1{
-    font-size:38px;
-}
-
-.hero p{
-    width:100%;
+    font-size:40px;
 }
 
 .hero-buttons{
@@ -216,6 +256,10 @@ body{
 
 .workflow-grid{
     grid-template-columns:1fr;
+}
+
+.hero-right img{
+    max-width:280px;
 }
 
 .awareness p{

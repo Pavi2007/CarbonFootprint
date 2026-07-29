@@ -266,19 +266,118 @@ public class BadgeServiceImpl implements BadgeService {
         userBadgeRepository.save(badge);
 
     }
+    private BadgeCollectionResponse createBadge(
+            User user,
+            BadgeType type,
+            BadgeLevel level,
+            String title,
+            String description,
+            String requirement) {
+
+        UserBadge earnedBadge = userBadgeRepository.findByUser(user)
+                .stream()
+                .filter(b -> b.getBadgeType() == type &&
+                        b.getBadgeLevel() == level)
+                .findFirst()
+                .orElse(null);
+
+        return new BadgeCollectionResponse(
+                type,
+                level,
+                earnedBadge != null,
+                earnedBadge != null ? earnedBadge.getEarnedDate() : null,
+                title,
+                description,
+                requirement
+        );
+    }
     @Override
     public List<BadgeCollectionResponse> getBadgeCollection() {
 
         User user = getLoggedInUser();
 
-        return userBadgeRepository.findByUser(user)
-                .stream()
-                .map(badge -> new BadgeCollectionResponse(
-                        badge.getBadgeType(),
-                        badge.getBadgeLevel(),
-                        badge.getEarnedDate()
-                ))
-                .toList();
+        List<BadgeCollectionResponse> badges = new ArrayList<>();
+
+        // Login Streak
+        badges.add(createBadge(
+                user,
+                BadgeType.LOGIN_STREAK,
+                BadgeLevel.BRONZE,
+                "Login Starter",
+                "Login for  consecutive days",
+                "Login for 5 day"));
+
+        badges.add(createBadge(
+                user,
+                BadgeType.LOGIN_STREAK,
+                BadgeLevel.SILVER,
+                "Consistency Master",
+                "Maintain your streak",
+                "Login for 30 consecutive days"));
+
+        badges.add(createBadge(
+                user,
+                BadgeType.LOGIN_STREAK,
+                BadgeLevel.GOLD,
+                "Streak Legend",
+                "Never miss a day",
+                "Login for 100 consecutive days"));
+
+
+
+        // Goal Completion
+        badges.add(createBadge(
+                user,
+                BadgeType.GOAL_COMPLETION,
+                BadgeLevel.BRONZE,
+                "Goal Achiever",
+                "Complete sustainability goals",
+                "Complete 5 goal"));
+
+        badges.add(createBadge(
+                user,
+                BadgeType.GOAL_COMPLETION,
+                BadgeLevel.SILVER,
+                "Goal Master",
+                "Keep achieving goals",
+                "Complete 15 goals"));
+
+        badges.add(createBadge(
+                user,
+                BadgeType.GOAL_COMPLETION,
+                BadgeLevel.GOLD,
+                "Goal Champion",
+                "Complete every challenge",
+                "Complete 30 goals"));
+
+
+
+        // Global Rank
+        badges.add(createBadge(
+                user,
+                BadgeType.GLOBAL_RANK,
+                BadgeLevel.BRONZE,
+                "Top 500",
+                "Reach the Top 500 users",
+                "Be ranked in Top 500"));
+
+        badges.add(createBadge(
+                user,
+                BadgeType.GLOBAL_RANK,
+                BadgeLevel.SILVER,
+                "Top 100",
+                "Reach the Top 100 users",
+                "Be ranked in Top 100"));
+
+        badges.add(createBadge(
+                user,
+                BadgeType.GLOBAL_RANK,
+                BadgeLevel.GOLD,
+                "Top 25",
+                "Become one of the best",
+                "Be ranked in Top 25"));
+
+        return badges;
     }
     @Override
     public List<HeatmapResponse> getHeatmap() {
@@ -328,7 +427,8 @@ public class BadgeServiceImpl implements BadgeService {
                     streak,
                     5,
                     BadgeLevel.SILVER,
-                    "Daily Login Streak"
+                    "Login for consecutive days",
+                    "Login for 5 consecutive days"
             ));
 
         } else if (streak < 30) {
@@ -339,7 +439,8 @@ public class BadgeServiceImpl implements BadgeService {
                     streak,
                     30,
                     BadgeLevel.GOLD,
-                    "Daily Login Streak"
+                    "Maintain your login streak",
+                    "Login for 30 consecutive days"
             ));
 
         } else {
@@ -350,7 +451,8 @@ public class BadgeServiceImpl implements BadgeService {
                     streak,
                     100,
                     null,
-                    "Daily Login Streak"
+                    "Never miss a day",
+                    "Login for 100 consecutive days"
             ));
 
         }
@@ -371,7 +473,8 @@ public class BadgeServiceImpl implements BadgeService {
                     (int) completed,
                     5,
                     BadgeLevel.SILVER,
-                    "Goal Completion"
+                    "Goal Completion",
+                    "Complete 5 goals"
             ));
 
         } else if (completed < 15) {
@@ -382,7 +485,8 @@ public class BadgeServiceImpl implements BadgeService {
                     (int) completed,
                     15,
                     BadgeLevel.GOLD,
-                    "Goal Completion"
+                    "Keep achieving sustainability goals",
+                    "Complete 15 goals"
             ));
 
         } else {
@@ -393,7 +497,8 @@ public class BadgeServiceImpl implements BadgeService {
                     (int) completed,
                     30,
                     null,
-                    "Goal Completion"
+                    "Complete every challenge",
+                    "Complete 30 goals"
             ));
 
         }

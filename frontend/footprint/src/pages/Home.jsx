@@ -1,45 +1,55 @@
 import "./Home.css";
 import { Link } from "react-router-dom";
+import heroImage from "../assets/hero.jpg";
 
 const Home = () => {
   return (
     <div className="home">
 
-      {/* HERO */}
-
       <section className="hero">
+
+    <div className="hero-left">
 
         <span className="tag">🌱 CarbonTrack</span>
 
         <h1>
-          Track Your Carbon.
-          <br />
-          <span>Protect Our Planet.</span>
+            Track Your Carbon.
+            <br />
+            <span>Protect Our Planet.</span>
         </h1>
 
         <p>
-          Monitor your daily carbon footprint, understand your
-          environmental impact, and build sustainable habits
-          for a greener future.
+            Monitor your daily carbon footprint, understand your
+            environmental impact, and build sustainable habits
+            for a greener future.
         </p>
 
         <div className="hero-buttons">
 
-          <Link to="/register">
-            <button className="primary-btn">
-              Get Started
-            </button>
-          </Link>
+            <Link to="/register">
+                <button className="primary-btn">
+                    Get Started
+                </button>
+            </Link>
 
-          <Link to="/login">
-            <button className="secondary-btn">
-              Login
-            </button>
-          </Link>
+            <Link to="/login">
+                <button className="secondary-btn">
+                    Login
+                </button>
+            </Link>
 
         </div>
 
-      </section>
+    </div>
+
+    <div className="hero-right">
+    <img
+        src={heroImage}
+        alt="Carbon Hero"
+    />
+    </div>
+
+</section>  
 
       {/* AWARENESS */}
 

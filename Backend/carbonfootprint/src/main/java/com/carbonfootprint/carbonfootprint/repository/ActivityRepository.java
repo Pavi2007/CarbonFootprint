@@ -1,5 +1,6 @@
 package com.carbonfootprint.carbonfootprint.repository;
 
+import com.carbonfootprint.carbonfootprint.dto.admin.ReportResponse;
 import com.carbonfootprint.carbonfootprint.entity.Activity;
 import com.carbonfootprint.carbonfootprint.entity.User;
 import com.carbonfootprint.carbonfootprint.enums.ActivityType;
@@ -71,5 +72,26 @@ public interface ActivityRepository extends JpaRepository<Activity, Long> {
             @Param("year") int year,
             @Param("month") int month
     );
+    long countByUser(User user);
+
+    @Query("""
+    SELECT COALESCE(SUM(a.emission),0)
+    FROM Activity a
+    WHERE a.user=:user
+    """)
+    Double getTotalEmission(@Param("user") User user);
+
+    @Query("""
+        SELECT new com.carbonfootprint.carbonfootprint.dto.admin.ReportResponse(
+            a.user.name,
+            COUNT(a),
+            SUM(a.emission)
+        )
+        FROM Activity a
+        WHERE a.activityDate >= :startDate
+        GROUP BY a.user.name
+        ORDER BY SUM(a.emission) DESC
+    """)
+    List<ReportResponse> getReportByDate(LocalDate startDate);
 
 }

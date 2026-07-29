@@ -20,12 +20,12 @@ min-height:100vh;
 }
 
 .dashboard-main{
-    flex:1;
-    margin-left:10px;      /* Same width as your sidebar */
+    margin-left:250px;   /* Sidebar width */
+    width:calc(100% - 250px);
     min-height:100vh;
-    padding:0px;
+    display:flex;
+    flex-direction:column;
     box-sizing:border-box;
-    overflow-x:hidden;
 }
 
 .welcome{

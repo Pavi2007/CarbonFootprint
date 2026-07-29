@@ -8,7 +8,7 @@ import {
     FaUsers,
     FaClipboardList,
     FaGlobe,
-    FaBuilding,
+    FaHeadset,
     FaAward,
     FaChartBar,
     FaFileAlt,
@@ -38,21 +38,16 @@ const AdminSidebar = () => {
 
                 <div className="logo">
 
-    <div className="logo-circle">
+                    <div className="logo-circle">
+                        <FaLeaf className="leaf-icon"/>
+                    </div>
 
-        <FaLeaf className="leaf-icon"/>
+                    <div className="logo-text">
+                        <h2>CarbonTrack</h2>
+                        <span>Admin Panel</span>
+                    </div>
 
-    </div>
-
-    <div className="logo-text">
-
-        <h2>CarbonTrack</h2>
-
-        <span>Admin Panel</span>
-
-    </div>
-
-</div>
+                </div>
 
                 {/* Menu */}
 
@@ -63,11 +58,8 @@ const AdminSidebar = () => {
                         className="menu-link"
                     >
                         <li>
-
-                            <FaHome/>
-
+                            <FaHome />
                             Dashboard
-
                         </li>
                     </NavLink>
 
@@ -76,11 +68,8 @@ const AdminSidebar = () => {
                         className="menu-link"
                     >
                         <li>
-
-                            <FaUsers/>
-
+                            <FaUsers />
                             User Management
-
                         </li>
                     </NavLink>
 
@@ -89,11 +78,8 @@ const AdminSidebar = () => {
                         className="menu-link"
                     >
                         <li>
-
-                            <FaClipboardList/>
-
+                            <FaClipboardList />
                             Activity Monitoring
-
                         </li>
                     </NavLink>
 
@@ -102,24 +88,20 @@ const AdminSidebar = () => {
                         className="menu-link"
                     >
                         <li>
-
-                            <FaGlobe/>
-
+                            <FaGlobe />
                             Emission Factors
-
                         </li>
                     </NavLink>
 
+                    {/* Replaced Organization */}
+
                     <NavLink
-                        to="/admin/organization"
+                        to="/admin/support"
                         className="menu-link"
                     >
                         <li>
-
-                            <FaBuilding/>
-
-                            Organization
-
+                            <FaHeadset />
+                            Support Tickets
                         </li>
                     </NavLink>
 
@@ -128,11 +110,8 @@ const AdminSidebar = () => {
                         className="menu-link"
                     >
                         <li>
-
-                            <FaAward/>
-
+                            <FaAward />
                             Badge Management
-
                         </li>
                     </NavLink>
 
@@ -141,11 +120,8 @@ const AdminSidebar = () => {
                         className="menu-link"
                     >
                         <li>
-
-                            <FaFileAlt/>
-
+                            <FaFileAlt />
                             Reports
-
                         </li>
                     </NavLink>
 
@@ -154,11 +130,8 @@ const AdminSidebar = () => {
                         className="menu-link"
                     >
                         <li>
-
-                            <FaChartBar/>
-
+                            <FaChartBar />
                             Analytics
-
                         </li>
                     </NavLink>
 
@@ -172,11 +145,8 @@ const AdminSidebar = () => {
                 className="logout-btn"
                 onClick={handleLogout}
             >
-
-                <FaSignOutAlt/>
-
+                <FaSignOutAlt />
                 Logout
-
             </button>
 
         </div>

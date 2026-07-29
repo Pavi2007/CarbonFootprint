@@ -6,6 +6,7 @@ import {
 } from "react-icons/fa";
 
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 import NotificationPanel from "./NotificationPanel";
 
@@ -14,9 +15,12 @@ import { getDashboard } from "../services/dashboardService";
 
 const Navbar = () => {
 
+  const navigate = useNavigate();
+
   const [unreadCount, setUnreadCount] = useState(0);
   const [showNotifications, setShowNotifications] = useState(false);
   const userName = localStorage.getItem("name");
+
   const [dashboard, setDashboard] = useState({
     carbonScore: 0,
   });
@@ -83,13 +87,24 @@ const Navbar = () => {
           />
         )}
 
-        <div className="profile-section">
-    <FaUserCircle className="profile" />
+        {/* Support */}
 
-    <span className="user-name">
-        {userName || "User"}
-    </span>
-</div>
+        <span
+          className="support-link"
+          onClick={() => navigate("/support")}
+        >
+          Support
+        </span>
+
+        {/* Profile */}
+
+        <div className="profile-section">
+          <FaUserCircle className="profile" />
+
+          <span className="user-name">
+            {userName || "User"}
+          </span>
+        </div>
 
       </div>
 

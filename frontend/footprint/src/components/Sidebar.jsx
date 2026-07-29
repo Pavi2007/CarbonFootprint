@@ -1,5 +1,5 @@
 import "./Sidebar.css";
-
+import { FaTrophy } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 import {  useNavigate } from "react-router-dom";
 import { FaAward } from "react-icons/fa";
@@ -86,12 +86,19 @@ const Sidebar = () => {
             </li>
           </NavLink>
 
-          <li>
-          <NavLink to="/badges">
-            <FaAward className="menu-icon" />
-            <span>Badges</span>
-          </NavLink>
-        </li>
+          <NavLink to="/badges" className="menu-link">
+    <li>
+        <FaAward />
+        Badges
+            </li>
+        </NavLink>
+
+        <NavLink to="/leaderboard" className="menu-link">
+            <li>
+                <FaTrophy />
+                Leaderboard
+            </li>
+        </NavLink>
           
 
           <NavLink to="/recommendations" className="menu-link">

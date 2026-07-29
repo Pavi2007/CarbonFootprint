@@ -1,0 +1,147 @@
+.badge-page{
+    margin-left:250px;
+    width:calc(100% - 250px);
+    min-height:100vh;
+    background:#e8fdf1;
+    display:flex;
+    flex-direction:column;
+    box-sizing:border-box;
+}
+
+.badge-container{
+    padding:30px;
+    flex:1;
+}
+/* ================= HEADER ================= */
+
+.badge-header{
+
+    background:linear-gradient(
+        135deg,
+        #1ee88d,
+        #2e744a
+    );
+
+    color:white;
+
+    border-radius:22px;
+
+    padding:40px;
+
+    margin-bottom:35px;
+
+    box-shadow:0 12px 30px rgba(0,0,0,.12);
+
+}
+
+.badge-header-content{
+
+    max-width:700px;
+
+}
+
+.badge-header h1{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    font-size:34px;
+
+    margin-bottom:15px;
+
+    font-weight:700;
+
+}
+
+.badge-header p{
+
+    font-size:16px;
+
+    line-height:1.7;
+
+    opacity:.95;
+
+}
+
+/* ================= SECTION ================= */
+
+.badge-section{
+
+    margin-top:35px;
+
+}
+
+.badge-section h2{
+
+    color:#14562a;
+
+    font-size:24px;
+
+    margin-bottom:22px;
+
+    font-weight:700;
+
+}
+
+/* ================= PROGRESS ================= */
+
+.progress-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+
+    gap:25px;
+
+    color: rgb(208, 240, 211);
+
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:992px){
+
+.badge-container{
+
+    padding:20px;
+
+}
+
+.badge-header{
+
+    padding:28px;
+
+}
+
+.badge-header h1{
+
+    font-size:28px;
+
+}
+
+}
+
+@media(max-width:768px){
+
+.progress-grid{
+
+    grid-template-columns:1fr;
+
+}
+
+.badge-header{
+
+    text-align:center;
+
+}
+
+.badge-header h1{
+
+    justify-content:center;
+
+}
+
+}

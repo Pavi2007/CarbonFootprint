@@ -22,4 +22,6 @@ public class BadgeProgressResponse {
     private BadgeLevel nextLevel;
 
     private String description;
+
+    private String requirement;
 }

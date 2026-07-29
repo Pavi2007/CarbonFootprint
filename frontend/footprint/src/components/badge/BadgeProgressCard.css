@@ -1,0 +1,149 @@
+.challenge-card{
+    background:linear-gradient(145deg,#ffffff,#f8fafc);
+    border-radius:22px;
+    padding:25px;
+    border:1px solid #aabada;
+    box-shadow:0 10px 25px rgba(15,23,42,.08);
+    transition:.35s;
+    overflow:hidden;
+    position:relative;
+}
+
+.challenge-card:hover{
+    transform:translateY(-6px);
+    box-shadow:0 18px 35px rgba(15,23,42,.15);
+}
+
+.challenge-card::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:5px;
+    background:linear-gradient(90deg,#cda446,#ce7e408d);
+}
+
+.challenge-top{
+    display:flex;
+    align-items:center;
+    gap:18px;
+    margin-bottom:22px;
+    color:#2ca883;
+}
+
+
+
+.icon-box{
+    width:70px;
+    height:70px;
+    border-radius:18px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-shrink:0;
+}
+
+.card-icon{
+    font-size:36px !important;
+}
+
+.fire{
+    color:#d3600e !important;
+}
+
+.goal{
+    color:#d6d317 !important;
+}
+
+.rank{
+    color:#d6c9f3 !important;
+}
+.title-box{
+    flex:1;
+}
+
+.title-box h3{
+    margin:0;
+    font-size:24px;
+    color:#17644e;
+    font-weight:700;
+}
+
+.title-box p{
+    margin-top:6px;
+    color:#6B7280;
+    font-size:14px;
+    line-height:1.5;
+}
+
+.badge-info{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
+    gap:15px;
+}
+
+.current-badge{
+    background:#FEF3C7;
+    color:#92400E;
+    padding:9px 18px;
+    border-radius:30px;
+    font-weight:600;
+    font-size:14px;
+}
+
+.next-badge{
+    background:#EEF2FF;
+    color:#e46630;
+    padding:9px 18px;
+    border-radius:30px;
+    font-weight:600;
+    font-size:14px;
+}
+
+.progress-text{
+    text-align:right;
+    margin-top:15px;
+    font-size:22px;
+    font-weight:700;
+    color:#754e05;
+}
+
+.remaining{
+    margin-top:22px;
+    padding:14px 18px;
+    border-radius:14px;
+    background:#F8FAFC;
+    border:1px solid #E5E7EB;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    font-size:15px;
+    color:#d19410;
+    font-weight:600;
+}
+
+.remaining svg{
+    color:#f0e068;
+    font-size:18px;
+}
+
+.remaining b{
+    color:#111827;
+}
+
+@media(max-width:768px){
+
+    .badge-info{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+
+    .progress-text{
+        text-align:left;
+    }
+
+}

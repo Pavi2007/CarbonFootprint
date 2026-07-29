@@ -1,0 +1,48 @@
+.progress-wrapper{
+    width:100%;
+    margin-top:18px;
+    color:aquamarine;
+}
+
+.progress-track{
+    width:100%;
+    height:12px;
+    background:#c5cad3;
+    border-radius:30px;
+    overflow:hidden;
+}
+
+.progress-fill{
+    height:100%;
+    border-radius:30px;
+    background:linear-gradient(
+        90deg,
+        #becdec,
+        #7C3AED
+    );
+    transition:width .8s ease;
+    position:relative;
+}
+
+.progress-fill::after{
+    content:"";
+    position:absolute;
+    top:0;
+    left:-35%;
+    width:35%;
+    height:100%;
+    background:rgba(255,255,255,.35);
+    animation:shine 2s infinite;
+}
+
+@keyframes shine{
+
+    from{
+        left:-35%;
+    }
+
+    to{
+        left:120%;
+    }
+
+}

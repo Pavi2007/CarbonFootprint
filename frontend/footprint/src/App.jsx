@@ -14,11 +14,16 @@ import AdminDashboard from "./admin/pages/AdminDashboard";
 import UserManagement from "./admin/pages/UserManagement";
 import ActivityMonitoring from "./admin/pages/ActivityMonitoring";
 import EmissionFactors from "./admin/pages/EmissionFactors";
-import Organization from "./admin/pages/Organization";
+import Organization from "./admin/pages/AdminSupport";
 import BadgeManagement from "./admin/pages/BadgeManagement";
 import Reports from "./admin/pages/Reports";
 import AdminAnalytics from "./admin/pages/AdminAnalytics";
 import Goal from "./pages/Goal";
+import Leaderboard from "./pages/Leaderboard";
+import Support from "./pages/Support";
+import AdminSupport from "./admin/pages/AdminSupport";
+
+
 function App() {
   return (
     <Routes>
@@ -38,7 +43,7 @@ function App() {
 
       {/* Main Application */}
       <Route path="/dashboard" element={<Dashboard />} />
-
+     <Route path="/support" element={<Support />} />
       <Route path="/activity" element={<Activity />} />
 
       <Route path="/analytics" element={<Analytics />} />
@@ -46,10 +51,13 @@ function App() {
       <Route path="/history" element={<History />} />
        <Route path="/goal" element={<Goal />} />
        <Route path="/badges" element={<Badge />} />
+       
+<Route path="/leaderboard" element={<Leaderboard />} />
       <Route
         path="/recommendations"
         element={<Recommendations />}
       />
+        
 
       <Route path="/settings" element={<Settings />} />
      <Route
@@ -57,7 +65,7 @@ function App() {
     element={<AdminDashboard />}
 />
 
-
+<Route path="/admin/support" element={<AdminSupport />} />
 <Route
     path="/admin/users"
     element={<UserManagement />}
