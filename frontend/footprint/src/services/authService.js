@@ -122,6 +122,16 @@ export const getMonthlyComparison = (period) => {
     });
 
 };
+export const forgotPassword = async (data) => {
+
+    const response = await axios.post(
+        "http://localhost:8080/api/auth/forgot-password",
+        data
+    );
+
+    return response.data;
+
+};
 export const getTopContributors = (period) => {
 
     return API.get("/analytics/top-contributors", {

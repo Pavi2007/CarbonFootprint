@@ -417,3 +417,81 @@
 .cancel-btn:hover {
     background: #555;
 }
+
+/* ==============================
+   Organization Dashboard
+============================== */
+
+.organization-card{
+
+    background:#ffffff;
+
+    border-radius:15px;
+
+    padding:30px;
+
+    margin-top:20px;
+
+    margin-bottom:25px;
+
+    box-shadow:0 3px 10px rgba(0,0,0,0.08);
+
+}
+
+.organization-card h2{
+
+    color:#2e7d32;
+
+    margin-bottom:10px;
+
+}
+
+.organization-card p{
+
+    color:#555;
+
+    font-size:16px;
+
+}
+
+.organization-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+
+    gap:20px;
+
+}
+
+.organization-box{
+
+    background:white;
+
+    border-radius:15px;
+
+    padding:25px;
+
+    box-shadow:0 3px 10px rgba(0,0,0,0.08);
+
+    text-align:center;
+
+}
+
+.organization-box h3{
+
+    color:#2e7d32;
+
+    margin-bottom:15px;
+
+}
+
+.organization-box p{
+
+    font-size:28px;
+
+    font-weight:bold;
+
+    color:#333;
+
+}

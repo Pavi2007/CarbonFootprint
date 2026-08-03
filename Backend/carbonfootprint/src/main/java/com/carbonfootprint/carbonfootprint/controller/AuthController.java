@@ -1,9 +1,10 @@
 package com.carbonfootprint.carbonfootprint.controller;
-
+import com.carbonfootprint.carbonfootprint.dto.ForgotPasswordRequest;
 import com.carbonfootprint.carbonfootprint.dto.AuthResponse;
 import com.carbonfootprint.carbonfootprint.dto.RegisterRequest;
 import com.carbonfootprint.carbonfootprint.service.AuthService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.carbonfootprint.carbonfootprint.dto.LoginRequest;
 @RestController
@@ -23,6 +24,15 @@ public class AuthController {
     public AuthResponse login(@RequestBody LoginRequest request){
 
         return authService.login(request);
+
+    }
+    @PostMapping("/forgot-password")
+    public ResponseEntity<String> forgotPassword(
+            @RequestBody ForgotPasswordRequest request) {
+
+        return ResponseEntity.ok(
+                authService.forgotPassword(request)
+        );
 
     }
 

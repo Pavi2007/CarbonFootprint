@@ -8,6 +8,7 @@ import {
     FaUsers,
     FaClipboardList,
     FaGlobe,
+    FaBuilding,
     FaHeadset,
     FaAward,
     FaChartBar,
@@ -129,9 +130,9 @@ const AdminSidebar = () => {
                         to="/admin/analytics"
                         className="menu-link"
                     >
-                        <li>
-                            <FaChartBar />
-                            Analytics
+                         <li>
+                            <FaBuilding />
+                            Organization
                         </li>
                     </NavLink>
 

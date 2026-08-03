@@ -89,21 +89,18 @@ public class BadgeServiceImpl implements BadgeService {
 
         int streak = user.getLoginStreak();
 
-        if(streak >= 5){
+        System.out.println(streak);
+        if (streak >= 30) {
 
-            giveBadge(user,BadgeLevel.BRONZE);
+            giveBadge(user, BadgeLevel.GOLD);
 
-        }
+        } else if (streak >= 5) {
 
-        if(streak >= 30){
+            giveBadge(user, BadgeLevel.SILVER);
 
-            giveBadge(user,BadgeLevel.SILVER);
+        } else if (streak >= 1) {
 
-        }
-
-        if(streak >= 100){
-
-            giveBadge(user,BadgeLevel.GOLD);
+            giveBadge(user, BadgeLevel.BRONZE);
 
         }
 

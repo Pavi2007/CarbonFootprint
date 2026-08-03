@@ -7,10 +7,13 @@ import lombok.Data;
 @AllArgsConstructor
 public class OrganizationResponse {
 
-    private Long id;
-
     private String organizationName;
-
     private String location;
+    private long totalUsers;
+    private long totalActivities;
+    private double totalEmission;
+    private double averageCarbonScore;
+    private String topPerformer;
+    private String highestEmissionCategory;
 
 }

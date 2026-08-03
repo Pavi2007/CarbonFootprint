@@ -9,7 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import com.carbonfootprint.carbonfootprint.dto.LoginRequest;
-
+import com.carbonfootprint.carbonfootprint.dto.ForgotPasswordRequest;
 @Service
 @RequiredArgsConstructor
 public class AuthService {
@@ -71,6 +71,32 @@ public class AuthService {
                 token,
                 user.getName()
         );
+
+    }
+    public String forgotPassword(ForgotPasswordRequest request) {
+
+        if (!request.getNewPassword().equals(request.getConfirmPassword())) {
+
+            return "Passwords do not match";
+
+        }
+
+        User user = userRepository.findByEmail(request.getEmail())
+                .orElse(null);
+
+        if (user == null) {
+
+            return "User not found";
+
+        }
+
+        user.setPassword(
+                passwordEncoder.encode(request.getNewPassword())
+        );
+
+        userRepository.save(user);
+
+        return "Password Updated Successfully";
 
     }
 }
