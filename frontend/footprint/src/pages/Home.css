@@ -38,7 +38,8 @@ body{
 
 .hero-right img{
     width:100%;
-    max-width:520px;
+    max-width:600px;
+    height:350px;
     border-radius:25px;
     object-fit:cover;
     box-shadow:0 15px 35px rgba(0,0,0,.12);
@@ -47,6 +48,22 @@ body{
 
 .hero-right img:hover{
     transform:scale(1.03);
+}
+.hero{
+    position: relative;
+}
+.home-top{
+
+    width:100%;
+
+    display:flex;
+
+    justify-content:flex-end;
+
+    padding:20px 60px;
+
+    box-sizing:border-box;
+
 }
 
 .tag{
@@ -266,4 +283,11 @@ body{
     width:100%;
 }
 
+}
+
+.translate-container {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  z-index: 1000;
 }

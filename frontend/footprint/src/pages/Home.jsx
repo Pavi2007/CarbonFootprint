@@ -1,16 +1,21 @@
 import "./Home.css";
 import { Link } from "react-router-dom";
 import heroImage from "../assets/hero.jpg";
-
+import GoogleTranslate from "../components/GoogleTranslate";
 const Home = () => {
   return (
     <div className="home">
+        <div className="home-top">
 
+        <GoogleTranslate />
+
+    </div>
       <section className="hero">
 
     <div className="hero-left">
 
         <span className="tag">🌱 CarbonTrack</span>
+
 
         <h1>
             Track Your Carbon.

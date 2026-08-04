@@ -1,4 +1,5 @@
 import "./Navbar.css";
+import GoogleTranslate from "./GoogleTranslate";
 import {
   FaBell,
   FaUserCircle,
@@ -60,12 +61,16 @@ const Navbar = () => {
         />
       </div>
 
-      <div className="navbar-right">
+     <div className="navbar-right">
 
-        <div className="score-card">
-          🌿 Carbon Score :
-          <span>{dashboard.carbonScore}</span>
-        </div>
+    
+    <GoogleTranslate />
+ 
+  <div className="score-card">
+    🌿 Carbon Score :
+    <span>{dashboard.carbonScore}</span>
+  </div>
+   
 
         <div
           className="notification-container"

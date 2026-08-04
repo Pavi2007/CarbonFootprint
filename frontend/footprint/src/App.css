@@ -5,3 +5,22 @@ body{
 .App{
     width:100%;
 }
+.goog-te-banner-frame {
+    display: none !important;
+}
+
+.skiptranslate {
+    display: none !important;
+}
+
+body {
+    top: 0 !important;
+}
+
+html {
+    top: 0 !important;
+}
+
+iframe.goog-te-banner-frame {
+    display: none !important;
+}

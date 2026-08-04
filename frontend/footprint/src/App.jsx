@@ -22,86 +22,47 @@ import Goal from "./pages/Goal";
 import Leaderboard from "./pages/Leaderboard";
 import Support from "./pages/Support";
 import AdminSupport from "./admin/pages/AdminSupport";
-
+import Chatbot from "./components/chatbot/Chatbot";
 
 function App() {
   return (
-    <Routes>
+    <>
+      <Routes>
 
-      {/* Home Page */}
-      <Route path="/" element={<Home />} />
+        {/* All your routes */}
 
-      {/* Authentication */}
-      <Route path="/login" element={<Login />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
 
-      <Route path="/register" element={<Register />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/support" element={<Support />} />
+        <Route path="/activity" element={<Activity />} />
+        <Route path="/analytics" element={<Analytics />} />
+        <Route path="/history" element={<History />} />
+        <Route path="/goal" element={<Goal />} />
+        <Route path="/badges" element={<Badge />} />
+        <Route path="/leaderboard" element={<Leaderboard />} />
+        <Route path="/recommendations" element={<Recommendations />} />
+        <Route path="/settings" element={<Settings />} />
 
-      <Route
-        path="/forgot-password"
-        element={<ForgotPassword />}
-      />
+        <Route path="/admin/dashboard" element={<AdminDashboard />} />
+        <Route path="/admin/support" element={<AdminSupport />} />
+        <Route path="/admin/users" element={<UserManagement />} />
+        <Route path="/admin/activity" element={<ActivityMonitoring />} />
+        <Route path="/admin/emission" element={<EmissionFactors />} />
+        <Route path="/admin/organization" element={<Organization />} />
+        <Route path="/admin/badges" element={<BadgeManagement />} />
+        <Route path="/admin/reports" element={<Reports />} />
+        <Route path="/admin/analytics" element={<AdminAnalytics />} />
 
-      {/* Main Application */}
-      <Route path="/dashboard" element={<Dashboard />} />
-     <Route path="/support" element={<Support />} />
-      <Route path="/activity" element={<Activity />} />
+      </Routes>
 
-      <Route path="/analytics" element={<Analytics />} />
+      {/* Floating Chatbot */}
+      <Chatbot />
 
-      <Route path="/history" element={<History />} />
-       <Route path="/goal" element={<Goal />} />
-       <Route path="/badges" element={<Badge />} />
-       
-<Route path="/leaderboard" element={<Leaderboard />} />
-      <Route
-        path="/recommendations"
-        element={<Recommendations />}
-      />
-        
-
-      <Route path="/settings" element={<Settings />} />
-     <Route
-    path="/admin/dashboard"
-    element={<AdminDashboard />}
-/>
-
-<Route path="/admin/support" element={<AdminSupport />} />
-<Route
-    path="/admin/users"
-    element={<UserManagement />}
-/>
-
-<Route
-    path="/admin/activity"
-    element={<ActivityMonitoring />}
-/>
-
-<Route
-    path="/admin/emission"
-    element={<EmissionFactors />}
-/>
-
-<Route
-    path="/admin/organization"
-    element={<Organization />}
-/>
-
-<Route
-    path="/admin/badges"
-    element={<BadgeManagement />}
-/>
-
-<Route
-    path="/admin/reports"
-    element={<Reports />}
-/>
-
-<Route
-    path="/admin/analytics"
-    element={<AdminAnalytics />}
-/>
-
-    </Routes>
+    </>
   );
 }
 

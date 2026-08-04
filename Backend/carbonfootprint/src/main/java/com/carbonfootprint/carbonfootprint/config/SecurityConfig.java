@@ -16,11 +16,7 @@ import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import java.util.List;
-import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.CorsConfigurationSource;
-import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
-import java.util.List;
 
 @Configuration
 @RequiredArgsConstructor
@@ -65,9 +61,11 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
 
-                        .requestMatchers("/api/auth/**").permitAll()
-
-                        .requestMatchers("/api/test").permitAll()
+                        .requestMatchers(
+                                "/api/auth/**",
+                                "/api/test",
+                                "/api/chat/**"
+                        ).permitAll()
 
                         // ADMIN ONLY
                         .requestMatchers("/api/admin/**")
