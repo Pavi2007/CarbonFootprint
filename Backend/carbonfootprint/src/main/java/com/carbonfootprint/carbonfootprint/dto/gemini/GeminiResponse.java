@@ -1,19 +1,12 @@
 package com.carbonfootprint.carbonfootprint.dto.gemini;
 
+import lombok.Data;
+
 import java.util.List;
 
+@Data
 public class GeminiResponse {
 
     private List<Candidate> candidates;
 
-    public GeminiResponse() {
-    }
-
-    public List<Candidate> getCandidates() {
-        return candidates;
-    }
-
-    public void setCandidates(List<Candidate> candidates) {
-        this.candidates = candidates;
-    }
 }

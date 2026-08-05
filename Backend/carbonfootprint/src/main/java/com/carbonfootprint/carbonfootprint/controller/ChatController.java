@@ -1,28 +1,21 @@
 package com.carbonfootprint.carbonfootprint.controller;
 
-import com.carbonfootprint.carbonfootprint.dto.ChatRequest;
-import com.carbonfootprint.carbonfootprint.dto.ChatResponse;
 import com.carbonfootprint.carbonfootprint.service.GeminiService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/chat")
-@CrossOrigin(origins = "http://localhost:5173")
+@RequiredArgsConstructor
 public class ChatController {
 
     private final GeminiService geminiService;
 
-    public ChatController(GeminiService geminiService) {
-        this.geminiService = geminiService;
-    }
-
     @PostMapping
-    public ChatResponse chat(@RequestBody ChatRequest request) {
+    public String chat(@RequestBody String message){
 
-        String reply =
-                geminiService.askGemini(request.getMessage());
+        return geminiService.askGemini(message);
 
-        return new ChatResponse(reply);
     }
 
 }

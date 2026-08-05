@@ -44,26 +44,32 @@ const response = await axios.post(
         }
     }
 );
-
         setMessages(prev => [
             ...prev,
             {
                 sender: "bot",
-                text: response.data.reply
+                text: response.data
             }
         ]);
 
-    } catch (error) {
+    } catch(error){
 
-        setMessages(prev => [
-            ...prev,
-            {
-                sender: "bot",
-                text: "⚠️ Unable to contact CarbonTrack AI."
-            }
-        ]);
+    console.log(error);
 
-    }
+    console.log(error.response);
+
+    console.log(error.response?.data);
+
+    setMessages(prev=>[
+        ...prev,
+        {
+            sender:"bot",
+            text:"⚠️ Unable to contact CarbonTrack AI."
+        }
+    ]);
+
+}
+
 
     setLoading(false);
 

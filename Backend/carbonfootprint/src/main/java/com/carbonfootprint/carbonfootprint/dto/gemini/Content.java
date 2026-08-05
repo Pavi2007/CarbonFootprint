@@ -1,23 +1,16 @@
 package com.carbonfootprint.carbonfootprint.dto.gemini;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.util.List;
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Content {
 
     private List<Part> parts;
 
-    public Content() {
-    }
-
-    public Content(List<Part> parts) {
-        this.parts = parts;
-    }
-
-    public List<Part> getParts() {
-        return parts;
-    }
-
-    public void setParts(List<Part> parts) {
-        this.parts = parts;
-    }
 }

@@ -36,6 +36,19 @@ public class ActivityService {
                 .orElseThrow(() ->
                         new RuntimeException("User not found"));
     }
+    public Double getYesterdayEmission() {
+
+        User user = getLoggedInUser();
+
+        LocalDate yesterday = LocalDate.now().minusDays(1);
+
+        return activityRepository
+                .findByUserAndActivityDate(user, yesterday)
+                .stream()
+                .mapToDouble(Activity::getEmission)
+                .sum();
+    }
+
     // 👇 Add the method here
     public ActivityResponse addActivity(ActivityRequest request) {
 
